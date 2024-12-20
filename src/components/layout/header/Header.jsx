@@ -29,7 +29,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
                 <h1 className="flex lg:flex-1">
                   <a href="#" className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
-                    <Image alt="" src="/images/pattern/common/logo_r.svg" width={32} height={32} className="h-8 w-auto" />
+                    <Image alt="" src="/images/pattern/common/logo_r.svg" width={32} height={32} className="h-[60px] w-[60px]" />
                   </a>
                 </h1>
                 <div className="flex lg:hidden">
