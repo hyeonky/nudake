@@ -9,10 +9,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Dialog, DialogPanel } from '@headlessui/react'
 
 const navigation = [
+  { name: 'ABOUT', href: '#' },
   { name: 'STORES', href: '#' },
   { name: 'MENU', href: '#' },
   { name: 'PROJECTS', href: '#' },
-  { name: 'CONTACT', href: '#' },
 ]
 
 const Header = ({ type = 'type1', title, sharing, prev }) => {

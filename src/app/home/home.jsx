@@ -11,9 +11,9 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Bento />
-      <IntroSwiper />
-      <News mockNews={mockNews} title="뉴스" />
+      {/* <Bento /> */}
+      {/* <IntroSwiper /> */}
+      {/* <News mockNews={mockNews} title="뉴스" /> */}
     </>
   )
 }
