@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import gsap from 'gsap'
 import { Img } from '@chakra-ui/react'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -74,7 +75,9 @@ export default function Hero() {
             <Img src="/images/pattern/main/img_xl.jpg" alt="코타" className=" w-full h-[60vh] rounded-xl" />
             <p className="text-left text-lg break-words w-full pt-2">Our exclusive patissier and barista team are constantly working to reinvent the idea of cake and beverage, aiming to create moments beyond culinary experience.</p>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
-              <button className="font-light text-sm w-[90px] h-[36px] p-4 bg-[#f9f9f9] rounded-[50px] flex justify-center items-center">view all</button>
+              <Link href="#">
+                <button className="font-light text-md w-[90px] h-[36px] p-4 bg-[#f9f9f9] rounded-[50px] flex justify-center items-center shadow-md">view all</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -136,7 +139,9 @@ export default function Hero() {
           </div>
         </div>
         <div className="btn-coll flex justify-center items-center w-full mt-32 ">
-          <button className="font-light text-sm w-[110px] h-[36px] p-4 bg-[#f9f9f9] rounded-[50px] flex justify-center items-center">All Project</button>
+          <Link href="#">
+            <button className="font-light text-md w-[120px] h-[36px] p-4 bg-[#F5F6F5] rounded-[50px] flex justify-center items-center shadow-md">All Project</button>
+          </Link>
         </div>
         {/* <iframe src="https://player.vimeo.com/video/1031002823?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="교체예정_jennie_main_pc"></iframe> */}
         {/* <iframe title="vimeo-player" src="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
@@ -180,31 +185,90 @@ export default function Hero() {
             <br />A place filled with new charm.
           </p>
         </div>
-        <div class="store-container">
-          <div class="store-bg flex flex-col w-full h-auto mt-24 px-16 object-cover rounded-xl overflow-hidden relative">
-            <Img src="/images/pattern/main/nudake_dosan_pc_1.png" alt="코타" class="h-[90vh]" />
-            <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" class="h-[90vh]" />
-            <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" class="h-[90vh]" />
-            <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" class="h-[90vh]" />
-          </div>
+        <div className="store-cont flex justify-center items-center rounded-xl mt-24 ">
+          <Link href="#">
+            {/* slide-list1 */}
+            <div className="slide-list relative">
+              <div className="store-text absolute top-1/3 left-52 text-[#F2F2EF] z-10">
+                <p className="text-2xl font-normal">KOREA</p>
+                <h2 className="pt-1 text-5xl font-bold"> DOSAN</h2>
+              </div>
+              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+                <Img src="/images/pattern/main/nudake_dosan_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
+              </div>
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <Img src="/images/pattern/main/nudake_dosan_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
+                </div>
+              </div>
+            </div>
 
-          <div class="store">
-            <div class="store-card">
-              <p>KOREA</p>
-              <h2>DOSAN</h2>
+            {/* slide-list2 */}
+            <div className="slide-list relative">
+              <div className="store-text text-5xl font-bold absolute top-1/3 left-52 text-[#B82822] z-10">
+                <p className="text-2xl font-normal">KOREA</p>
+                <h2 className="pt-1 text-5xl font-bold">SEONGSU</h2>
+              </div>
+
+              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+                <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+              </div>
+
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                </div>
+              </div>
             </div>
-            <div class="store-card">
-              <p>KOREA</p>
-              <h2>SEONGSU</h2>
+
+            {/* slide-list3 */}
+            <div className="slide-list relative">
+              <div className="store-text absolute top-1/3 left-52 text-[#7B3010] z-10">
+                <p className="text-2xl font-normal">KOREA</p>
+                <h2 className="pt-1 text-5xl font-bold">SINSA</h2>
+              </div>
+
+              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+                <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+              </div>
+
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                </div>
+              </div>
             </div>
-            <div class="store-card">
-              <p>KOREA</p>
-              <h2>SINSA</h2>
+
+            {/* slide-list4 */}
+            <div className="slide-list relative">
+              <div className="store-text absolute top-1/3 left-52 glow-neon z-10">
+                <p className="text-2xl font-normal">CHINA</p>
+                <h2 className="pt-1 text-5xl font-bold">SHANGHAI</h2>
+              </div>
+
+              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+                <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+              </div>
+
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+                <div className="relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                </div>
+              </div>
             </div>
-            <div class="store-card">
-              <p>KOREA</p>
-              <h2>SHANGHAI</h2>
-            </div>
+          </Link>
+        </div>
+      </section>
+      <section className="textOpacity h-[100vh] bg-#f7f6f2">
+        <div className="flex items-center justify-center h-screen">
+          <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
+            <h2>Our desserts are more than treats</h2>
+            <h2>They’re an experience.</h2>
+            <span className="text-normal text-xl ">Experience our creations!</span>
           </div>
         </div>
       </section>
