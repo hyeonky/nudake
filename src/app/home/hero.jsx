@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import gsap from 'gsap'
 import { Img } from '@chakra-ui/react'
 import Link from 'next/link'
+import React, { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -14,10 +16,55 @@ const navigation = [
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const puzzleContainerRef = useRef(null)
+  const puzzlePiecesRef = useRef()
+  const FantasySectionRef = useRef()
+  // puzzle
+  // bg-[#f7f6f2]
+  gsap.registerPlugin(ScrollTrigger)
+
+  // FantasySection
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const section = FantasySectionRef.current
+    const textElements = section.querySelectorAll('.Fantasy-desc span, .img-desc span')
+
+    textElements.forEach((element) => {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          y: 30, // 초기 위치 아래로 이동
+        },
+        {
+          opacity: 1,
+          y: 0, // 제자리로 이동
+          duration: 1, // 애니메이션 지속 시간
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%', // span이 뷰포트에 들어올 때 시작
+            end: 'bottom 0%', // span이 뷰포트의 중간 지점을 지나갈 때 종료
+            toggleActions: 'restart none none reset', // 스크롤 방향에 따라 초기화
+            markers: true, // 디버깅용 마커 활성화
+            onLeave: () => {
+              // 요소가 뷰포트를 벗어날 때 상태 초기화
+              gsap.set(element, { opacity: 1, y: 0 })
+            },
+          },
+        }
+      )
+    })
+
+    // Cleanup on component unmount
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
 
   return (
     <div id="wrap">
-      <section className="h-[100vh] bg-#f7f6f2">
+      <section className="h-[100vh] ">
         <div className="intro-text flex justify-between items-center mt-24 pt-4 px-16">
           <div className="intro-heading text-6xl leading-normal ">
             <h2>Art &</h2>
@@ -29,34 +76,34 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16">
-          <div className="puzzle-piece w-full h-full relative">
+        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16" ref={puzzleContainerRef}>
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/rouge-heel_logo_1.png" className="object-cover w-full h-full" alt="Puzzle Piece 1" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/33_1.5x.png" className="object-cover w-full h-full" alt="Puzzle Piece 2" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/cauli_cake_1_2x-100.png" className="object-cover w-full h-full" alt="Puzzle Piece 3" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/코타.png" className="object-cover w-full h-full" alt="Puzzle Piece 4" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/cameo_logo_1.jpg" className="object-cover w-full h-full" alt="Puzzle Piece 5" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/15.png" className="object-cover w-full h-full" alt="Puzzle Piece 6" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/6.png" className="object-cover w-full h-full" alt="Puzzle Piece 7" />
           </div>
-          <div className="puzzle-piece w-full h-full relative">
+          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/6.png" className="object-cover w-full h-full" alt="Puzzle Piece 8" />
           </div>
         </div>
       </section>
-      <section className="Fantasy-section">
+      <section className="FantasySection" ref={FantasySectionRef}>
         <div className="Fantasy-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Fantasy-heading text-6xl leading-normal flex flex-row">
             <h2>
@@ -64,16 +111,24 @@ export default function Hero() {
             </h2>
           </div>
         </div>
-        <div className="Fantasy-page flex justify-between items-center mt-16 px-16">
-          <div className="textarea  break-words flex flex-col items-center justify-center">
-            <p className="Fantasy-desc text-md text-left font-light break-words w-[500px] pt-3">
-              NUDAKE is a cake brand launched by GENTLE MONSTER. We mix fashion and art to create never-before-seen pastries and cakes. While placing the core at cake and beverage, NUDAKE connects with the world in several ways, including digital content, space, packaging, and more. This enables us
-              to effectively share our vision without compromising our values.
-            </p>
+        <div className="Fantasy-page spilt flex justify-between items-center mt-16 px-16">
+          <div className="textarea break-words flex flex-col items-center justify-center">
+            <div className="Fantasy-desc  text-md text-left font-light break-words w-[500px] pt-3 ">
+              <span className="inline-block">NUDAKE is a cake brand launched by GENTLE MONSTER. We mix</span>
+              <span className="inline-block">fashion and art to create never-before-seen pastries and cakes. While</span>
+              <span className="inline-block">placing the core at cake and beverage, NUDAKE connects with the</span>
+              <span className="inline-block">world in several ways, including digital content, space, packaging, and</span>
+              <span className="inline-block">more. This enables us to effectively share our vision without</span>
+              <span className="inline-block">compromising our values.</span>
+            </div>
           </div>
           <div className="image flex flex-col justify-between items-start w-[50vh]">
             <Img src="/images/pattern/main/img_xl.jpg" alt="코타" className=" w-full h-[60vh] rounded-xl" />
-            <p className="text-left text-lg break-words w-full pt-2">Our exclusive patissier and barista team are constantly working to reinvent the idea of cake and beverage, aiming to create moments beyond culinary experience.</p>
+            <div className="img-desc spilt text-lg break-words w-full pt-2">
+              <span className="inline-block">Our exclusive patissier and barista team are constantly</span>
+              <span className="inline-block">working to reinvent the idea of cake and beverage, aiming</span>
+              <span className="inline-block">to create moments beyond culinary experience.</span>
+            </div>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
               <Link href="#">
                 <button className="font-light text-md w-[90px] h-[36px] p-4 bg-[#f9f9f9] rounded-[50px] flex justify-center items-center shadow-md">view all</button>
@@ -85,7 +140,9 @@ export default function Hero() {
       <section className="Projects-section ">
         <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Projects-heading text-7xl leading-normal flex flex-row">
-            <h2 className="font-normal">Projects x Artists</h2>
+            <h2 className="font-normal">
+              Projects <span className="text-[#bd1a1a]">x</span> Artists
+            </h2>
           </div>
         </div>
 
@@ -212,13 +269,13 @@ export default function Hero() {
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+                <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                  <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -231,13 +288,13 @@ export default function Hero() {
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+                <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                  <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -250,13 +307,13 @@ export default function Hero() {
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" class="w-full h-[30vh] rounded-xl" />
+                <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" class="h-[90vh] w-full object-cover" />
+                  <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
