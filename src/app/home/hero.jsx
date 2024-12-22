@@ -16,17 +16,14 @@ const navigation = [
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const puzzleContainerRef = useRef(null)
-  const puzzlePiecesRef = useRef()
-  const FantasySectionRef = useRef()
+  const FantasySectionRef = useRef(null)
+  const ProjectsSectionRef = useRef(null)
   // puzzle
   // bg-[#f7f6f2]
   gsap.registerPlugin(ScrollTrigger)
 
   // FantasySection
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
     const section = FantasySectionRef.current
     const textElements = section.querySelectorAll('.Fantasy-desc span, .img-desc span')
 
@@ -35,20 +32,19 @@ export default function Hero() {
         element,
         {
           opacity: 0,
-          y: 30, // 초기 위치 아래로 이동
+          y: 30,
         },
         {
           opacity: 1,
-          y: 0, // 제자리로 이동
-          duration: 1, // 애니메이션 지속 시간
+          y: 0,
+          duration: 1,
           scrollTrigger: {
             trigger: element,
-            start: 'top 80%', // span이 뷰포트에 들어올 때 시작
-            end: 'bottom 0%', // span이 뷰포트의 중간 지점을 지나갈 때 종료
-            toggleActions: 'restart none none reset', // 스크롤 방향에 따라 초기화
-            markers: true, // 디버깅용 마커 활성화
+            start: 'top 80%',
+            end: 'bottom 0%',
+            toggleActions: 'restart none none reset',
+            markers: true,
             onLeave: () => {
-              // 요소가 뷰포트를 벗어날 때 상태 초기화
               gsap.set(element, { opacity: 1, y: 0 })
             },
           },
@@ -56,12 +52,39 @@ export default function Hero() {
       )
     })
 
-    // Cleanup on component unmount
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])
+  // ProjectsSection
+  useEffect(() => {
+    const section = ProjectsSectionRef.current
+    const textElements = section.querySelectorAll('.Projects-heading, .Projects-text')
 
+    textElements.forEach((element) => {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 1,
+          y: 200,
+        },
+        {
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            end: 'bottom 0%',
+            toggleActions: 'restart none none reset',
+            markers: true,
+            onLeave: () => {
+              gsap.set(element, { opacity: 1, y: 0 })
+            },
+          },
+        }
+      )
+    })
+  })
   return (
     <div id="wrap">
       <section className="h-[100vh] ">
@@ -76,7 +99,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16" ref={puzzleContainerRef}>
+        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16">
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Img src="/images/pattern/main/rouge-heel_logo_1.png" className="object-cover w-full h-full" alt="Puzzle Piece 1" />
           </div>
@@ -137,7 +160,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="Projects-section ">
+      <section className="ProjectsSection" ref={ProjectsSectionRef}>
         <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Projects-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-normal">
@@ -167,11 +190,11 @@ export default function Hero() {
           <div className="Fantasy-img w-[50vh] mt-20 px-16 ml-auto">
             <Img src="/images/pattern/main/nujeans_12.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div>
-          <div className="collaboration-text absolute top-1/3 left-16 ">
+          <div className="Projects-text absolute top-1/3 left-16 ">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2022 COLLABORATION</strong>
               <span className=" font-bold text-3xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
-              <p className="collaboration-desc text-md font-light break-words  pt-3">
+              <p className="Projects-desc text-md font-light break-words  pt-3">
                 ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single 'OMG'. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its charming yet
                 imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
               </p>
@@ -184,11 +207,11 @@ export default function Hero() {
           <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
             <Img src="/images/pattern/main/sinsa_8_0.65x.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div>
-          <div className="collaboration-text absolute top-1/3 right-16">
+          <div className="Projects-text absolute top-1/3 right-16">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2023 STORE OPEN</strong>
               <span className=" font-bold text-3xl text-[#7B3010] pt-4">SINSA</span>
-              <p className="collaboration-desc text-md font-light break-words  pt-3">
+              <p className="Projects-desc text-md font-light break-words  pt-3">
                 NUDAKE’s third flagship store, ‘The Croissant’, opened in Sinsa on September 8, 2023, featuring a variety of menus that give a fresh take on croissants. Inspired by the convenient size and diverse flavors of rice balls, the signature menu, ‘Oniwassant’, offers a customizable
                 experience akin to its rice-based counterpart. With options for flavor and shape tailored to individual preferences, the seaweed wrapping not only adds visual appeal but also enhances the culinary delight with its savory essence.
               </p>
