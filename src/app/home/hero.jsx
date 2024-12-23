@@ -154,7 +154,7 @@ export default function Hero() {
             </div>
           </div>
           <div className="image flex flex-col justify-between items-start w-[50vh]">
-            <Img src="/images/pattern/main/img_xl.jpg" alt="코타" className=" w-full h-[60vh] rounded-xl" />
+            <Img src="/images/pattern/main/img_xl.jpg" alt="코타" className=" w-full h-[60vh] rounded-xl " />
             <div className="img-desc spilt text-lg break-words w-full pt-2">
               <span className="inline-block">Our exclusive patissier and barista team are constantly</span>
               <span className="inline-block">working to reinvent the idea of cake and beverage, aiming</span>
@@ -183,7 +183,7 @@ export default function Hero() {
           {/* <div className="Fantasy-img w-[50vh] mt-20 px-16">
             <Img src="/images/pattern/main/jennie_popup_3_pc.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div> */}
-          <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
+          <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
           <div className="Projects-text absolute top-1/3 left-1/3">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
@@ -201,7 +201,7 @@ export default function Hero() {
             <Img src="/images/pattern/main/nujeans_12.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div> */}
           <div className="flex justify-end px-44">
-            <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
+            <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 left-16 ">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
@@ -221,7 +221,7 @@ export default function Hero() {
             <Img src="/images/pattern/main/sinsa_8_0.65x.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div> */}
           <div className="flex justify-center mr-44">
-            <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
+            <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 right-16">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
