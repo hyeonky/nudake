@@ -6,6 +6,7 @@ import Link from 'next/link'
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Flipcard from '@/components/flipcard/Flipcard'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -38,6 +39,12 @@ export default function Hero() {
           opacity: 1,
           y: 0,
           duration: 1,
+          stagger: {
+            textElements,
+            duration: 1.5,
+            y: 0,
+            ease: 'power4.easeOut',
+          },
           scrollTrigger: {
             trigger: element,
             start: 'top 80%',
@@ -59,7 +66,7 @@ export default function Hero() {
   // ProjectsSection
   useEffect(() => {
     const section = ProjectsSectionRef.current
-    const textElements = section.querySelectorAll('.Projects-heading, .Projects-text')
+    const textElements = section.querySelectorAll('.Projects-text')
 
     textElements.forEach((element) => {
       gsap.fromTo(
@@ -71,6 +78,7 @@ export default function Hero() {
         {
           y: 0,
           duration: 1,
+          stagger: 1,
           scrollTrigger: {
             trigger: element,
             start: 'top 80%',
@@ -136,7 +144,7 @@ export default function Hero() {
         </div>
         <div className="Fantasy-page spilt flex justify-between items-center mt-16 px-16">
           <div className="textarea break-words flex flex-col items-center justify-center">
-            <div className="Fantasy-desc  text-md text-left font-light break-words w-[500px] pt-3 ">
+            <div className="Fantasy-desc text-md text-left font-light break-words w-[500px] pt-3 ">
               <span className="inline-block">NUDAKE is a cake brand launched by GENTLE MONSTER. We mix</span>
               <span className="inline-block">fashion and art to create never-before-seen pastries and cakes. While</span>
               <span className="inline-block">placing the core at cake and beverage, NUDAKE connects with the</span>
@@ -153,8 +161,8 @@ export default function Hero() {
               <span className="inline-block">to create moments beyond culinary experience.</span>
             </div>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
-              <Link href="#">
-                <button className="font-light text-md w-[90px] h-[36px] p-4 bg-[#f9f9f9] rounded-[50px] flex justify-center items-center shadow-md">view all</button>
+              <Link href="#" className="hover:no-underline">
+                <button className="flex justify-center items-center w-[90px] h-[36px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[50px] shadow-md transition">view all</button>
               </Link>
             </div>
           </div>
@@ -170,10 +178,12 @@ export default function Hero() {
         </div>
 
         {/* card1 */}
+
         <div className="cardList relative">
-          <div className="Fantasy-img w-[50vh] mt-20 px-16">
+          {/* <div className="Fantasy-img w-[50vh] mt-20 px-16">
             <Img src="/images/pattern/main/jennie_popup_3_pc.png" alt="코타" className="h-[50vh] rounded-xl" />
-          </div>
+          </div> */}
+          <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
           <div className="Projects-text absolute top-1/3 left-1/3">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
@@ -187,8 +197,11 @@ export default function Hero() {
 
         {/* card2 */}
         <div className="cardList relative">
-          <div className="Fantasy-img w-[50vh] mt-20 px-16 ml-auto">
+          {/* <div className="Fantasy-img w-[50vh] mt-20 px-16 ml-auto">
             <Img src="/images/pattern/main/nujeans_12.png" alt="코타" className="h-[50vh] rounded-xl" />
+          </div> */}
+          <div className="flex justify-end px-44">
+            <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
           </div>
           <div className="Projects-text absolute top-1/3 left-16 ">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
@@ -204,8 +217,11 @@ export default function Hero() {
 
         {/* card3 */}
         <div className="cardList relative">
-          <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
+          {/* <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
             <Img src="/images/pattern/main/sinsa_8_0.65x.png" alt="코타" className="h-[50vh] rounded-xl" />
+          </div> */}
+          <div className="flex justify-center mr-44">
+            <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" />
           </div>
           <div className="Projects-text absolute top-1/3 right-16">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
@@ -218,11 +234,12 @@ export default function Hero() {
             </div>
           </div>
         </div>
-        <div className="btn-coll flex justify-center items-center w-full mt-32 ">
-          <Link href="#">
-            <button className="font-light text-md w-[120px] h-[36px] p-4 bg-[#F5F6F5] rounded-[50px] flex justify-center items-center shadow-md">All Project</button>
+        <div className="btn-coll flex justify-center items-center w-full mt-32">
+          <Link href="#" className="hover:no-underline">
+            <button className="flex justify-center items-center w-[120px] h-[36px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[50px] shadow-md">All Project</button>
           </Link>
         </div>
+
         {/* <iframe src="https://player.vimeo.com/video/1031002823?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="교체예정_jennie_main_pc"></iframe> */}
         {/* <iframe title="vimeo-player" src="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
       </section>

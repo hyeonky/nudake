@@ -2,35 +2,45 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx,mdx}', './src/components/**/*.{js,ts,jsx,tsx,mdx}', './src/app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-     screens: {
-      'sm': '480px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
       '2xl': '1536px',
     },
     container: {
       mawWidth: {
-        DEFAULT: "1340px",
+        DEFAULT: '1340px',
       },
       px: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        md: "4rem",
-        lg: "6rem",
-        xl: "8rem",
+        DEFAULT: '1rem',
+        sm: '2rem',
+        md: '4rem',
+        lg: '6rem',
+        xl: '8rem',
       },
     },
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+      },
+    },
+    extend: {
+      perspective: {
+        DEFAULT: '1000px',
+      },
+      rotate: {
+        'y-180': '180deg',
+      },
+      transformStyle: {
+        '3d': 'preserve-3d',
+      },
+      backfaceVisibility: {
+        hidden: 'hidden',
       },
     },
   },
@@ -51,10 +61,10 @@ module.exports = {
           paddingRight: '20px',
         },
         '.bar': {
-          'display': 'flex',
+          display: 'flex',
           'column-gap': '17px',
           '> *': {
-            'position': 'relative',
+            position: 'relative',
             '&:last-child::before': {
               display: 'none',
             },
@@ -72,12 +82,24 @@ module.exports = {
           },
         },
         '.flex-center': {
-          'display': 'flex',
+          display: 'flex',
           'align-items': 'center',
           'justify-content': 'center',
         },
-      };
-      addUtilities(newUtilities, ['responsive', 'hover', 'focus']);
+        '.perspective': {
+          perspective: '1000px',
+        },
+        '.transform-style-3d': {
+          'transform-style': 'preserve-3d',
+        },
+        '.backface-hidden': {
+          'backface-visibility': 'hidden',
+        },
+        '.rotate-y-180': {
+          transform: 'rotateY(180deg)',
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover', 'focus'])
     },
   ],
-};
+}
