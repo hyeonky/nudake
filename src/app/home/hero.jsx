@@ -1,12 +1,38 @@
 'use client'
 
 import { useState } from 'react'
-import { Img } from '@chakra-ui/react'
 import Link from 'next/link'
 import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Flipcard from '@/components/flipcard/Flipcard'
+import Image from 'next/image'
+
+const wordPositions = [
+  { x: -40, y: -20, rotate: -15 },
+  { x: 20, y: -30, rotate: 10 },
+  { x: -10, y: 10, rotate: -5 },
+  { x: 30, y: -10, rotate: 25 },
+  { x: -20, y: 40, rotate: -10 },
+  { x: 50, y: 20, rotate: 15 },
+  { x: -50, y: -50, rotate: 20 },
+  { x: 30, y: -50, rotate: -20 },
+  { x: -30, y: 30, rotate: 30 },
+  { x: 10, y: 50, rotate: -5 },
+  { x: -40, y: -40, rotate: 15 },
+  { x: 40, y: 40, rotate: -10 },
+  { x: -30, y: 10, rotate: 5 },
+  { x: 30, y: -30, rotate: -25 },
+  { x: -50, y: 50, rotate: 10 },
+  { x: 20, y: -20, rotate: -15 },
+  { x: -20, y: 10, rotate: 0 },
+  { x: 40, y: -40, rotate: 20 },
+  { x: -40, y: 20, rotate: -5 },
+  { x: 20, y: 40, rotate: 10 },
+  { x: -10, y: -10, rotate: -10 },
+  { x: 30, y: 30, rotate: 15 },
+  { x: -20, y: -30, rotate: -20 },
+]
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -17,8 +43,10 @@ const navigation = [
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const FantasySectionRef = useRef(null)
-  const ProjectsSectionRef = useRef(null)
+  const FantasySectionRef = useRef([])
+  const ProjectsSectionRef = useRef([])
+  const textOpacityRef = useRef([])
+
   // puzzle
   // bg-[#f7f6f2]
   gsap.registerPlugin(ScrollTrigger)
@@ -63,6 +91,7 @@ export default function Hero() {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [])
+
   // ProjectsSection
   useEffect(() => {
     const section = ProjectsSectionRef.current
@@ -93,6 +122,35 @@ export default function Hero() {
       )
     })
   })
+
+  // textOpacity
+  useEffect(() => {
+    // 모든 단어 요소를 가져옴
+    const words = document.querySelectorAll('.word')
+
+    // GSAP 타임라인을 이용한 애니메이션 설정
+    gsap.fromTo(
+      words,
+      {
+        opacity: 0, // 처음에는 보이지 않게 설정
+        x: -1000,
+        scale: 5, // 화면 밖에서부터 시작
+      },
+      {
+        opacity: 1, // 점차적으로 보이게 설정
+        x: 0, // 원래 위치로 이동
+        stagger: 0.1, // 각 단어가 순차적으로 나타나게 설정
+        scale: 1,
+        scrollTrigger: {
+          trigger: '.sentence', // 애니메이션을 트리거할 요소
+          start: 'top bottom', // 화면 상단이 아래쪽에 도달하면 시작
+          end: 'bottom top', // 화면 하단이 상단에 도달하면 끝
+          scrub: true, // 스크롤에 맞춰 애니메이션이 진행됨
+        },
+      }
+    )
+  }, [])
+
   return (
     <div id="wrap">
       <section className="h-[100vh] ">
@@ -109,28 +167,28 @@ export default function Hero() {
 
         <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16">
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/rouge-heel_logo_1.png" className="object-cover w-full h-full" alt="Puzzle Piece 1" />
+            <Image src="/images/pattern/main/rouge-heel_logo_1.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 1" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/33_1.5x.png" className="object-cover w-full h-full" alt="Puzzle Piece 2" />
+            <Image src="/images/pattern/main/33_1.5x.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 2" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/cauli_cake_1_2x-100.png" className="object-cover w-full h-full" alt="Puzzle Piece 3" />
+            <Image src="/images/pattern/main/cauli_cake_1_2x-100.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 3" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/코타.png" className="object-cover w-full h-full" alt="Puzzle Piece 4" />
+            <Image src="/images/pattern/main/코타.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 4" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/cameo_logo_1.jpg" className="object-cover w-full h-full" alt="Puzzle Piece 5" />
+            <Image src="/images/pattern/main/cameo_logo_1.jpg" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 5" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/15.png" className="object-cover w-full h-full" alt="Puzzle Piece 6" />
+            <Image src="/images/pattern/main/15.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 6" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/6.png" className="object-cover w-full h-full" alt="Puzzle Piece 7" />
+            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 7" />
           </div>
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Img src="/images/pattern/main/6.png" className="object-cover w-full h-full" alt="Puzzle Piece 8" />
+            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 8" />
           </div>
         </div>
       </section>
@@ -154,7 +212,7 @@ export default function Hero() {
             </div>
           </div>
           <div className="image flex flex-col justify-between items-start w-[50vh]">
-            <Img src="/images/pattern/main/img_xl.jpg" alt="코타" className=" w-full h-[60vh] rounded-xl " />
+            <Image src="/images/pattern/main/img_xl.jpg" width={500} height={500} alt="코타" className=" w-full h-[60vh] rounded-xl " />
             <div className="img-desc spilt text-lg break-words w-full pt-2">
               <span className="inline-block">Our exclusive patissier and barista team are constantly</span>
               <span className="inline-block">working to reinvent the idea of cake and beverage, aiming</span>
@@ -184,6 +242,7 @@ export default function Hero() {
             <Img src="/images/pattern/main/jennie_popup_3_pc.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div> */}
           <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
+
           <div className="Projects-text absolute top-1/3 left-1/3">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
@@ -239,36 +298,33 @@ export default function Hero() {
             <button className="flex justify-center items-center w-[120px] h-[36px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[50px] shadow-md">All Project</button>
           </Link>
         </div>
-
-        {/* <iframe src="https://player.vimeo.com/video/1031002823?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1&loop=1&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="교체예정_jennie_main_pc"></iframe> */}
-        {/* <iframe title="vimeo-player" src="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> */}
       </section>
-      <section className="textOpacity h-[100vh] bg-#f7f6f2">
-        <div className="flex items-center justify-center h-screen">
+      <section className="textOpacity h-[100vh] bg-#f7f6f2 flex justify-center items-center">
+        <div className="flex items-center justify-center h-screen relative">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal">
-            <div className="word inline-block">At </div>
-            <div className="word inline-block">NUDAKE,</div>
-            <div className="word inline-block">we</div>
-            <div className="word inline-block">blur</div>
-            <div className="word inline-block">the</div>
-            <div className="word inline-block">lines</div>
-            <div className="word inline-block">between</div>
-            <div className="word inline-block">art</div>
-            <div className="word inline-block">and</div>
-            <div className="word inline-block">dessert.</div>
-            <div className="word inline-block">Each</div>
-            <div className="word inline-block">masterpiece</div>
-            <div className="word inline-block">is</div>
-            <div className="word inline-block">a</div>
-            <div className="word inline-block">gateway</div>
-            <div className="word inline-block">to</div>
-            <div className="word inline-block">imagination,</div>
-            <div className="word inline-block">blending</div>
-            <div className="word inline-block">aesthetics</div>
-            <div className="word inline-block">to</div>
-            <div className="word inline-block">awaken</div>
-            <div className="word inline-block">new</div>
-            <div className="word inline-block">dreams.</div>
+            <div className="word absolute inline-block left-[-40px] top-[-20px] opacity-1 transform translate-x-[10px] translate-y-[5px]">At</div>
+            <div className="word absolute inline-block left-[20px] top-[-30px] opacity-1 transform translate-x-[0px] translate-y-[10px]">NUDAKE,</div>
+            <div className="word absolute inline-block left-[-10px] top-[10px] opacity-1 transform translate-x-[-5px] translate-y-[-10px]">we</div>
+            <div className="word absolute inline-block left-[30px] top-[-10px] opacity-1 transform translate-x-[5px] translate-y-[-5px]">blur</div>
+            <div className="word absolute inline-block left-[-20px] top-[40px] opacity-1 transform translate-x-[-10px] translate-y-[-5px]">the</div>
+            <div className="word absolute inline-block left-[50px] top-[20px] opacity-1 transform translate-x-[10px] translate-y-[5px]">lines</div>
+            <div className="word absolute inline-block left-[-50px] top-[-50px] opacity-1 transform translate-x=[5px] translate-y=[10px]">between</div>
+            <div className="word absolute inline-block left-[30px] top-[-50px] opacity-1 transform translate-x=[-5px] translate-y=[-5px]">art</div>
+            <div className="word absolute inline-block left-[-30px] top-[30px] opacity-1 transform translate-x=[-10px] translate-y=[10px]">and</div>
+            <div className="word absolute inline-block left-[10px] top-[50px] opacity-1 transform translate-x=[0px] translate-y=[-10px]">dessert.</div>
+            <div className="word absolute inline-block left-[-40px] top-[-40px] opacity-1 transform translate-x=[10px] translate-y=[-5px]">Each</div>
+            <div className="word absolute inline-block left-[40px] top-[40px] opacity-1 transform translate-x=[-5px] translate-y=[5px]">masterpiece</div>
+            <div className="word absolute inline-block left-[-30px] top-[10px] opacity-1 transform translate-x=[-10px] translate-y=[5px]">is</div>
+            <div className="word absolute inline-block left-[30px] top-[-30px] opacity-1 transform translate-x=[5px] translate-y=[-5px]">a</div>
+            <div className="word absolute inline-block left-[-50px] top-[50px] opacity-1 transform translate-x=[0px] translate-y=[10px]">gateway</div>
+            <div className="word absolute inline-block left-[20px] top-[-20px] opacity-1 transform translate-x=[10px] translate-y=[5px]">to</div>
+            <div className="word absolute inline-block left-[-20px] top-[10px] opacity-1 transform translate-x=[-10px] translate-y=[0px]">imagination,</div>
+            <div className="word absolute inline-block left-[40px] top-[-40px] opacity-1 transform translate-x=[5px] translate-y=[-5px]">blending</div>
+            <div className="word absolute inline-block left-[-40px] top-[20px] opacity-1 transform translate-x=[-5px] translate-y=[10px]">aesthetics</div>
+            <div className="word absolute inline-block left-[20px] top-[40px] opacity-1 transform translate-x=[0px] translate-y=[-5px]">to</div>
+            <div className="word absolute inline-block left-[-10px] top-[-10px] opacity-1 transform translate-x=[10px] translate-y=[5px]">awaken</div>
+            <div className="word absolute inline-block left-[30px] top-[30px] opacity-1 transform translate-x=[-5px] translate-y=[-10px]">new</div>
+            <div className="word absolute inline-block left-[-20px] top-[-30px] opacity-1 transform translate-x=[5px] translate-y=[5px]">dreams.</div>
           </div>
         </div>
       </section>
@@ -291,31 +347,31 @@ export default function Hero() {
                 <h2 className="pt-1 text-5xl font-bold"> DOSAN</h2>
               </div>
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_dosan_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
+                <Image src="/images/pattern/main/nudake_dosan_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_dosan_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                  <Image src="/images/pattern/main/nudake_dosan_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
 
             {/* slide-list2 */}
             <div className="slide-list relative">
-              <div className="store-text text-5xl font-bold absolute top-1/3 left-52 text-[#B82822] z-10">
+              <div className="store-text text-5xl font-bold absolute top-1/3 left-52 text-[#b82822] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold">SEONGSU</h2>
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
+                <Image src="/images/pattern/main/nudake_seongsu_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_seongsu_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                  <Image src="/images/pattern/main/nudake_seongsu_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -328,13 +384,13 @@ export default function Hero() {
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
+                <Image src="/images/pattern/main/nudake_sinsa_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_sinsa_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                  <Image src="/images/pattern/main/nudake_sinsa_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
@@ -347,20 +403,20 @@ export default function Hero() {
               </div>
 
               <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
-                <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" className="w-full h-[30vh] rounded-xl" />
+                <Image src="/images/pattern/main/nudake_shanghai_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
               <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
                 <div className="relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <Img src="/images/pattern/main/nudake_shanghai_pc_1.png" alt="코타" className="h-[90vh] w-full object-cover" />
+                  <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+                  <Image src="/images/pattern/main/nudake_shanghai_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
                 </div>
               </div>
             </div>
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[100vh] bg-#f7f6f2">
+      <section className="textOpacity h-[100vh] bg-#f7f6f2" ref={textOpacityRef}>
         <div className="flex items-center justify-center h-screen">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
             <h2>Our desserts are more than treats</h2>
@@ -369,6 +425,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
+      {/* <iframe title="vimeo-player" src="https://player.vimeo.com/video/1032223745?h=041d829694" width="640" height="360" frameborder="0" allowfullscreen></iframe> */}
     </div>
   )
 }
