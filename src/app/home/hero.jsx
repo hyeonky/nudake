@@ -133,18 +133,20 @@ export default function Hero() {
       words,
       {
         opacity: 0, // 처음에는 보이지 않게 설정
-        x: -1000,
+        x: -500,
+        y: -300,
         scale: 5, // 화면 밖에서부터 시작
       },
       {
         opacity: 1, // 점차적으로 보이게 설정
-        x: 0, // 원래 위치로 이동
+        x: 0,
+        y: 0, // 원래 위치로 이동
         stagger: 0.1, // 각 단어가 순차적으로 나타나게 설정
         scale: 1,
         scrollTrigger: {
-          trigger: '.sentence', // 애니메이션을 트리거할 요소
-          start: 'top bottom', // 화면 상단이 아래쪽에 도달하면 시작
-          end: 'bottom top', // 화면 하단이 상단에 도달하면 끝
+          trigger: '.textOpacity', // 애니메이션을 트리거할 요소
+          start: 'top center', // 화면 상단이 아래쪽에 도달하면 시작
+          end: 'bottom center', // 화면 하단이 상단에 도달하면 끝
           scrub: true, // 스크롤에 맞춰 애니메이션이 진행됨
         },
       }
@@ -159,7 +161,7 @@ export default function Hero() {
             <h2>Art &</h2>
             <h2 className="font-extrabold text-[#bd1a1a]">Fashion</h2>
           </div>
-          <p className="text-xl leading-normal font-light w-[520px] text-left	">
+          <p className="text-xl leading-normal font-light w-[52rem] text-left	">
             With NUDAKE, <br />
             We combine art and fashion to craft unique desserts. Every creation offers an experience that sparks a new realm of fantasy.
           </p>
@@ -202,7 +204,7 @@ export default function Hero() {
         </div>
         <div className="Fantasy-page spilt flex justify-between items-center mt-16 px-16">
           <div className="textarea break-words flex flex-col items-center justify-center">
-            <div className="Fantasy-desc text-md text-left font-light break-words w-[500px] pt-3 ">
+            <div className="Fantasy-desc text-md text-left font-light break-words w-[50rem] pt-3 ">
               <span className="inline-block">NUDAKE is a cake brand launched by GENTLE MONSTER. We mix</span>
               <span className="inline-block">fashion and art to create never-before-seen pastries and cakes. While</span>
               <span className="inline-block">placing the core at cake and beverage, NUDAKE connects with the</span>
@@ -220,7 +222,7 @@ export default function Hero() {
             </div>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
               <Link href="#" className="hover:no-underline">
-                <button className="flex justify-center items-center w-[90px] h-[36px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[50px] shadow-md transition">view all</button>
+                <button className="flex justify-center items-center w-[90px] h-[36px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[5rem] shadow-md transition">view all</button>
               </Link>
             </div>
           </div>
@@ -244,7 +246,7 @@ export default function Hero() {
           <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
 
           <div className="Projects-text absolute top-1/3 left-1/3">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
               <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
               <span className=" font-bold text-3xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
@@ -263,7 +265,7 @@ export default function Hero() {
             <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 left-16 ">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
               <strong className=" font-normal text-xl">2022 COLLABORATION</strong>
               <span className=" font-bold text-3xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
@@ -283,7 +285,7 @@ export default function Hero() {
             <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 right-16">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
               <strong className=" font-normal text-xl">2023 STORE OPEN</strong>
               <span className=" font-bold text-3xl text-[#7B3010] pt-4">SINSA</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
@@ -295,36 +297,36 @@ export default function Hero() {
         </div>
         <div className="btn-coll flex justify-center items-center w-full mt-32">
           <Link href="#" className="hover:no-underline">
-            <button className="flex justify-center items-center w-[120px] h-[36px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[50px] shadow-md">All Project</button>
+            <button className="flex justify-center items-center w-[120px] h-[36px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[5rem] shadow-md">All Project</button>
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[100vh] bg-#f7f6f2 flex justify-center items-center">
-        <div className="flex items-center justify-center h-screen relative">
-          <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal">
-            <div className="word absolute inline-block left-[-40px] top-[-20px] opacity-1 transform translate-x-[10px] translate-y-[5px]">At</div>
-            <div className="word absolute inline-block left-[20px] top-[-30px] opacity-1 transform translate-x-[0px] translate-y-[10px]">NUDAKE,</div>
-            <div className="word absolute inline-block left-[-10px] top-[10px] opacity-1 transform translate-x-[-5px] translate-y-[-10px]">we</div>
-            <div className="word absolute inline-block left-[30px] top-[-10px] opacity-1 transform translate-x-[5px] translate-y-[-5px]">blur</div>
-            <div className="word absolute inline-block left-[-20px] top-[40px] opacity-1 transform translate-x-[-10px] translate-y-[-5px]">the</div>
-            <div className="word absolute inline-block left-[50px] top-[20px] opacity-1 transform translate-x-[10px] translate-y-[5px]">lines</div>
-            <div className="word absolute inline-block left-[-50px] top-[-50px] opacity-1 transform translate-x=[5px] translate-y=[10px]">between</div>
-            <div className="word absolute inline-block left-[30px] top-[-50px] opacity-1 transform translate-x=[-5px] translate-y=[-5px]">art</div>
-            <div className="word absolute inline-block left-[-30px] top-[30px] opacity-1 transform translate-x=[-10px] translate-y=[10px]">and</div>
-            <div className="word absolute inline-block left-[10px] top-[50px] opacity-1 transform translate-x=[0px] translate-y=[-10px]">dessert.</div>
-            <div className="word absolute inline-block left-[-40px] top-[-40px] opacity-1 transform translate-x=[10px] translate-y=[-5px]">Each</div>
-            <div className="word absolute inline-block left-[40px] top-[40px] opacity-1 transform translate-x=[-5px] translate-y=[5px]">masterpiece</div>
-            <div className="word absolute inline-block left-[-30px] top-[10px] opacity-1 transform translate-x=[-10px] translate-y=[5px]">is</div>
-            <div className="word absolute inline-block left-[30px] top-[-30px] opacity-1 transform translate-x=[5px] translate-y=[-5px]">a</div>
-            <div className="word absolute inline-block left-[-50px] top-[50px] opacity-1 transform translate-x=[0px] translate-y=[10px]">gateway</div>
-            <div className="word absolute inline-block left-[20px] top-[-20px] opacity-1 transform translate-x=[10px] translate-y=[5px]">to</div>
-            <div className="word absolute inline-block left-[-20px] top-[10px] opacity-1 transform translate-x=[-10px] translate-y=[0px]">imagination,</div>
-            <div className="word absolute inline-block left-[40px] top-[-40px] opacity-1 transform translate-x=[5px] translate-y=[-5px]">blending</div>
-            <div className="word absolute inline-block left-[-40px] top-[20px] opacity-1 transform translate-x=[-5px] translate-y=[10px]">aesthetics</div>
-            <div className="word absolute inline-block left-[20px] top-[40px] opacity-1 transform translate-x=[0px] translate-y=[-5px]">to</div>
-            <div className="word absolute inline-block left-[-10px] top-[-10px] opacity-1 transform translate-x=[10px] translate-y=[5px]">awaken</div>
-            <div className="word absolute inline-block left-[30px] top-[30px] opacity-1 transform translate-x=[-5px] translate-y=[-10px]">new</div>
-            <div className="word absolute inline-block left-[-20px] top-[-30px] opacity-1 transform translate-x=[5px] translate-y=[5px]">dreams.</div>
+      <section className="textOpacity h-[200vh] bg-#f7f6f2 flex justify-center items-center relative">
+        <div className="flex items-center justify-center h-screen ">
+          <div className="textOpacity_tit sticky top-1/4 mx-auto pt-4 w-3/5 text-center space-x-2 text-5xl leading-normal">
+            <div className="word absolute inline-block opacity-1">At</div>
+            <div className="word absolute inline-block opacity-1">NUDAKE,</div>
+            <div className="word absolute inline-block opacity-1">we</div>
+            <div className="word absolute inline-block opacity-1">blur</div>
+            <div className="word absolute inline-block opacity-1">the</div>
+            <div className="word absolute inline-block opacity-1">lines</div>
+            <div className="word absolute inline-block opacity-1">between</div>
+            <div className="word absolute inline-block opacity-1">art</div>
+            <div className="word absolute inline-block opacity-1">and</div>
+            <div className="word absolute inline-block opacity-1">dessert.</div>
+            <div className="word absolute inline-block opacity-1">Each</div>
+            <div className="word absolute inline-block opacity-1">masterpiece</div>
+            <div className="word absolute inline-block opacity-1">is</div>
+            <div className="word absolute inline-block opacity-1">a</div>
+            <div className="word absolute inline-block opacity-1">gateway</div>
+            <div className="word absolute inline-block opacity-1">to</div>
+            <div className="word absolute inline-block opacity-1">imagination,</div>
+            <div className="word absolute inline-block opacity-1">blending</div>
+            <div className="word absolute inline-block opacity-1">aesthetics</div>
+            <div className="word absolute inline-block opacity-1">to</div>
+            <div className="word absolute inline-block opacity-1">awaken</div>
+            <div className="word absolute inline-block opacity-1">new</div>
+            <div className="word absolute inline-block opacity-1">dreams.</div>
           </div>
         </div>
       </section>
