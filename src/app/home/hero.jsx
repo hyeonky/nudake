@@ -8,32 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Flipcard from '@/components/flipcard/Flipcard'
 import Image from 'next/image'
 
-const wordPositions = [
-  { x: -40, y: -20, rotate: -15 },
-  { x: 20, y: -30, rotate: 10 },
-  { x: -10, y: 10, rotate: -5 },
-  { x: 30, y: -10, rotate: 25 },
-  { x: -20, y: 40, rotate: -10 },
-  { x: 50, y: 20, rotate: 15 },
-  { x: -50, y: -50, rotate: 20 },
-  { x: 30, y: -50, rotate: -20 },
-  { x: -30, y: 30, rotate: 30 },
-  { x: 10, y: 50, rotate: -5 },
-  { x: -40, y: -40, rotate: 15 },
-  { x: 40, y: 40, rotate: -10 },
-  { x: -30, y: 10, rotate: 5 },
-  { x: 30, y: -30, rotate: -25 },
-  { x: -50, y: 50, rotate: 10 },
-  { x: 20, y: -20, rotate: -15 },
-  { x: -20, y: 10, rotate: 0 },
-  { x: 40, y: -40, rotate: 20 },
-  { x: -40, y: 20, rotate: -5 },
-  { x: 20, y: 40, rotate: 10 },
-  { x: -10, y: -10, rotate: -10 },
-  { x: 30, y: 30, rotate: 15 },
-  { x: -20, y: -30, rotate: -20 },
-]
-
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
@@ -125,32 +99,69 @@ export default function Hero() {
 
   // textOpacity
   useEffect(() => {
-    // 모든 단어 요소를 가져옴
     const words = document.querySelectorAll('.word')
 
-    // GSAP 타임라인을 이용한 애니메이션 설정
-    gsap.fromTo(
-      words,
-      {
-        opacity: 0, // 처음에는 보이지 않게 설정
-        x: -500,
-        y: -300,
-        scale: 5, // 화면 밖에서부터 시작
-      },
-      {
-        opacity: 1, // 점차적으로 보이게 설정
-        x: 0,
-        y: 0, // 원래 위치로 이동
-        stagger: 0.1, // 각 단어가 순차적으로 나타나게 설정
-        scale: 1,
-        scrollTrigger: {
-          trigger: '.textOpacity', // 애니메이션을 트리거할 요소
-          start: 'top center', // 화면 상단이 아래쪽에 도달하면 시작
-          end: 'bottom center', // 화면 하단이 상단에 도달하면 끝
-          scrub: true, // 스크롤에 맞춰 애니메이션이 진행됨
-        },
+    // 단어 간 최소 거리 설정 (픽셀 단위, 더 가까운 간격으로 설정)
+    const minDistance = 50
+
+    // 기존 좌표를 저장하는 배열
+    const positions = []
+
+    // 겹치지 않는 좌표 생성 함수
+    const generatePosition = () => {
+      let isValid = false
+      let x, y
+
+      while (!isValid) {
+        x = (Math.random() - 0.5) * 400 // x 범위를 줄임
+        y = (Math.random() - 0.5) * 400 // y 범위를 줄임
+        isValid = positions.every(([px, py]) => {
+          const distance = Math.sqrt((x - px) ** 2 + (y - py) ** 2)
+          return distance > minDistance
+        })
       }
-    )
+
+      positions.push([x, y]) // 새로운 좌표 저장
+      return { x, y }
+    }
+
+    words.forEach((word) => {
+      const { x: randomX, y: randomY } = generatePosition()
+      const randomScale = Math.random() * 1.5 + 0.5 // 0.5~2 사이의 크기
+      const randomRotateX = Math.random() * 180 // X축 회전 (범위 축소)
+      const randomRotateY = Math.random() * 180 // Y축 회전 (범위 축소)
+      const randomTranslateZ = Math.random() * 100 - 50 // Z축 이동 (-50~50 사이)
+
+      gsap.fromTo(
+        word,
+        {
+          opacity: 0,
+          x: randomX,
+          y: randomY,
+          scale: randomScale,
+          rotateX: randomRotateX,
+          rotateY: randomRotateY,
+          z: randomTranslateZ, // 3D 이동 추가
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0, // 원래 위치로 이동
+          scale: 1,
+          rotateX: 0, // 정면으로 회전
+          rotateY: 0,
+          z: 0, // 원래 깊이로 이동
+          duration: 3, // 애니메이션 지속 시간
+          ease: 'power4.out', // 부드러운 애니메이션
+          scrollTrigger: {
+            trigger: '.textOpacity_tit', // 애니메이션을 트리거할 요소
+            start: 'top bottom', // 화면 상단이 요소 중심에 도달하면 시작
+            end: 'bottom top', // 화면 하단이 요소 중심에 도달하면 끝
+            scrub: true, // 스크롤과 동기화
+          },
+        }
+      )
+    })
   }, [])
 
   return (
@@ -161,7 +172,7 @@ export default function Hero() {
             <h2>Art &</h2>
             <h2 className="font-extrabold text-[#bd1a1a]">Fashion</h2>
           </div>
-          <p className="text-xl leading-normal font-light w-[52rem] text-left	">
+          <p className="text-xl leading-normal font-light w-[500px] text-left	">
             With NUDAKE, <br />
             We combine art and fashion to craft unique desserts. Every creation offers an experience that sparks a new realm of fantasy.
           </p>
@@ -194,8 +205,8 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="FantasySection" ref={FantasySectionRef}>
-        <div className="Fantasy-heading flex justify-start items-center mt-24 px-16 ">
+      <section className="FantasySection my-32" ref={FantasySectionRef}>
+        <div className="Fantasy-heading flex justify-start items-center px-16 ">
           <div className="Fantasy-heading text-6xl leading-normal flex flex-row">
             <h2>
               <span className="font-extrabold text-[#2B3116]">Fantasy</span> x Nudake
@@ -204,7 +215,7 @@ export default function Hero() {
         </div>
         <div className="Fantasy-page spilt flex justify-between items-center mt-16 px-16">
           <div className="textarea break-words flex flex-col items-center justify-center">
-            <div className="Fantasy-desc text-md text-left font-light break-words w-[50rem] pt-3 ">
+            <div className="Fantasy-desc text-lg text-left font-light break-words w-[600px] pt-3 ">
               <span className="inline-block">NUDAKE is a cake brand launched by GENTLE MONSTER. We mix</span>
               <span className="inline-block">fashion and art to create never-before-seen pastries and cakes. While</span>
               <span className="inline-block">placing the core at cake and beverage, NUDAKE connects with the</span>
@@ -215,10 +226,10 @@ export default function Hero() {
           </div>
           <div className="image flex flex-col justify-between items-start w-[50vh]">
             <Image src="/images/pattern/main/img_xl.jpg" width={500} height={500} alt="코타" className=" w-full h-[60vh] rounded-xl " />
-            <div className="img-desc spilt text-lg break-words w-full pt-2">
+            <div className="img-desc spilt text-lg font-semibold break-words w-full pt-2">
               <span className="inline-block">Our exclusive patissier and barista team are constantly</span>
-              <span className="inline-block">working to reinvent the idea of cake and beverage, aiming</span>
-              <span className="inline-block">to create moments beyond culinary experience.</span>
+              <span className="inline-block">working to reinvent the idea of cake and beverage, </span>
+              <span className="inline-block">aiming to create moments beyond culinary experience.</span>
             </div>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
               <Link href="#" className="hover:no-underline">
@@ -228,7 +239,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="ProjectsSection" ref={ProjectsSectionRef}>
+      <section className="ProjectsSection my-32" ref={ProjectsSectionRef}>
         <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Projects-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-normal">
@@ -246,10 +257,10 @@ export default function Hero() {
           <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
 
           <div className="Projects-text absolute top-1/3 left-1/3">
-            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
               <span className=" font-bold text-3xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
-              <p className="Projects-desc text-md font-light break-words  pt-3">
+              <p className="Projects-desc text-md font-light break-words pt-3">
                 'Nudake♡Jennie' is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie's first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
               </p>
             </div>
@@ -265,7 +276,7 @@ export default function Hero() {
             <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 left-16 ">
-            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2022 COLLABORATION</strong>
               <span className=" font-bold text-3xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
@@ -285,7 +296,7 @@ export default function Hero() {
             <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1" />
           </div>
           <div className="Projects-text absolute top-1/3 right-16">
-            <div className="textarea flex flex-col text-left w-[40rem] mt-20 ">
+            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
               <strong className=" font-normal text-xl">2023 STORE OPEN</strong>
               <span className=" font-bold text-3xl text-[#7B3010] pt-4">SINSA</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
@@ -301,36 +312,36 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[200vh] bg-#f7f6f2 flex justify-center items-center relative">
-        <div className="flex items-center justify-center h-screen ">
-          <div className="textOpacity_tit sticky top-1/4 mx-auto pt-4 w-3/5 text-center space-x-2 text-5xl leading-normal">
-            <div className="word absolute inline-block opacity-1">At</div>
-            <div className="word absolute inline-block opacity-1">NUDAKE,</div>
-            <div className="word absolute inline-block opacity-1">we</div>
-            <div className="word absolute inline-block opacity-1">blur</div>
-            <div className="word absolute inline-block opacity-1">the</div>
-            <div className="word absolute inline-block opacity-1">lines</div>
-            <div className="word absolute inline-block opacity-1">between</div>
-            <div className="word absolute inline-block opacity-1">art</div>
-            <div className="word absolute inline-block opacity-1">and</div>
-            <div className="word absolute inline-block opacity-1">dessert.</div>
-            <div className="word absolute inline-block opacity-1">Each</div>
-            <div className="word absolute inline-block opacity-1">masterpiece</div>
-            <div className="word absolute inline-block opacity-1">is</div>
-            <div className="word absolute inline-block opacity-1">a</div>
-            <div className="word absolute inline-block opacity-1">gateway</div>
-            <div className="word absolute inline-block opacity-1">to</div>
-            <div className="word absolute inline-block opacity-1">imagination,</div>
-            <div className="word absolute inline-block opacity-1">blending</div>
-            <div className="word absolute inline-block opacity-1">aesthetics</div>
-            <div className="word absolute inline-block opacity-1">to</div>
-            <div className="word absolute inline-block opacity-1">awaken</div>
-            <div className="word absolute inline-block opacity-1">new</div>
-            <div className="word absolute inline-block opacity-1">dreams.</div>
+      <section className="textOpacity h-[200vh] my-32 bg-[#f7f6f2] flex justify-center relative">
+        <div className="sticky top-1/2 transform translate-y-1/2 w-full">
+          <div className="textOpacity_tit mx-auto w-3/5 text-center space-x-2 text-5xl leading-normal">
+            <span className="word inline-block">At</span>
+            <span className="word inline-block">NUDAKE,</span>
+            <span className="word inline-block">we</span>
+            <span className="word inline-block">blur</span>
+            <span className="word inline-block">the</span>
+            <span className="word inline-block">lines</span>
+            <span className="word inline-block">between</span>
+            <span className="word inline-block">art</span>
+            <span className="word inline-block">and</span>
+            <span className="word inline-block">dessert.</span>
+            <span className="word inline-block">Each</span>
+            <span className="word inline-block">masterpiece</span>
+            <span className="word inline-block">is</span>
+            <span className="word inline-block">a</span>
+            <span className="word inline-block">gateway</span>
+            <span className="word inline-block">to</span>
+            <span className="word inline-block">imagination,</span>
+            <span className="word inline-block">blending</span>
+            <span className="word inline-block">aesthetics</span>
+            <span className="word inline-block">to</span>
+            <span className="word inline-block">awaken</span>
+            <span className="word inline-block">new</span>
+            <span className="word inline-block">dreams.</span>
           </div>
         </div>
       </section>
-      <section className="store">
+      <section className="store my-32">
         <div className="store-heading flex flex-col justify-start items-center mt-24 px-16 ">
           <div className="store-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-bold text-[#342F2D]">Store</h2>
@@ -418,7 +429,7 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[100vh] bg-#f7f6f2" ref={textOpacityRef}>
+      <section className="textOpacity my-32 ">
         <div className="flex items-center justify-center h-screen">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
             <h2>Our desserts are more than treats</h2>
