@@ -19,6 +19,7 @@ export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const FantasySectionRef = useRef([])
   const ProjectsSectionRef = useRef([])
+  const StoreSectionRef = useRef([])
 
   // puzzle
   // bg-[#f7f6f2]
@@ -51,7 +52,7 @@ export default function Hero() {
             start: 'top 80%',
             end: 'bottom 0%',
             toggleActions: 'restart none none reset',
-            markers: true,
+            // markers: true,
             onLeave: () => {
               gsap.set(element, { opacity: 1, y: 0 })
             },
@@ -86,7 +87,7 @@ export default function Hero() {
             start: 'top 80%',
             end: 'bottom 0%',
             toggleActions: 'restart none none reset',
-            markers: true,
+            // markers: true,
             onLeave: () => {
               gsap.set(element, { opacity: 1, y: 0 })
             },
@@ -112,8 +113,8 @@ export default function Hero() {
       let x, y
 
       while (!isValid) {
-        x = (Math.random() - 0.5) * 400 // x 범위를 줄임
-        y = (Math.random() - 0.5) * 400 // y 범위를 줄임
+        x = (Math.random() - 0.5) * 800
+        y = (Math.random() - 0.5) * 800
         isValid = positions.every(([px, py]) => {
           const distance = Math.sqrt((x - px) ** 2 + (y - py) ** 2)
           return distance > minDistance
@@ -126,17 +127,10 @@ export default function Hero() {
 
     words.forEach((word) => {
       const { x: randomX, y: randomY } = generatePosition()
-<<<<<<< HEAD
-      const randomScale = Math.random() * 1.5 + 0.5
-      const randomRotateX = Math.random() * 180
-      const randomRotateY = Math.random() * 180
-      const randomTranslateZ = Math.random() * 100 - 50
-=======
-      const randomScale = Math.random() * 3.5 + 0.5 // 0.5~2 사이의 크기
-      const randomRotateX = Math.random() * 180 // X축 회전 (범위 축소)
-      const randomRotateY = Math.random() * 180 // Y축 회전 (범위 축소)
+      const randomScale = Math.random() * 4.5 + 1.5 // 0.5~2 사이의 크기
+      const randomRotateX = Math.random() * 90 // X축 회전 (범위 축소)
+      const randomRotateY = Math.random() * 90 // Y축 회전 (범위 축소)
       const randomTranslateZ = Math.random() * 100 - 50 // Z축 이동 (-50~50 사이)
->>>>>>> f067696d0d6b5a4174e3146c529208beecc5ab86
 
       gsap.fromTo(
         word,
@@ -148,6 +142,7 @@ export default function Hero() {
           rotateX: randomRotateX,
           rotateY: randomRotateY,
           z: randomTranslateZ,
+          pin: true,
         },
         {
           opacity: 1,
@@ -161,18 +156,43 @@ export default function Hero() {
           ease: 'power4.out',
           scrollTrigger: {
             trigger: '.textOpacity_tit',
-            start: 'top bottom',
-            end: 'bottom top',
+            start: 'top 80%',
+            end: 'bottom 20%',
             scrub: true,
           },
+          pin: true,
         }
       )
     })
   }, [])
 
+  // store
+  useEffect(() => {
+    const sections = StoreSectionRef.current.querySelectorAll('.slide-list')
+
+    sections.forEach((section, index) => {
+      const image = section.querySelector('.image-container')
+      const text = section.querySelector('.store-text')
+
+      // Timeline for individual sections
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 1,
+            markers: false,
+          },
+        })
+        .fromTo(image, { opacity: 0, y: 100, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power4.out' })
+        .fromTo(text, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1, ease: 'power4.out' }, '<')
+    })
+  }, [])
+
   return (
     <div id="wrap">
-      <section className="h-screen pb-[10VW] ">
+      <section className="h-screen pb-[10VW] bg-[#f9f9f9]">
         <div className="intro-text fy-[10vw] flex justify-between items-center gap-8 mt-24 pt-4 px-16">
           <div className="intro-heading text-6xl leading-normal ">
             <h2>Art &</h2>
@@ -318,8 +338,8 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[200vh] py-[10VW] bg-[#f9f9f9] flex justify-center relative">
-        <div className="sticky top-1/2 transform translate-y-1/2 w-full">
+      <section className="textOpacity h-[200vh] py-[10VW] bg-[#f9f9f9] flex justify-center items-center relative ov">
+        <div className="sticky top-0 w-full">
           <div className="textOpacity_tit mx-auto w-3/5 text-center space-x-2 text-5xl leading-normal">
             <span className="word inline-block">At</span>
             <span className="word inline-block">NUDAKE,</span>
@@ -347,7 +367,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="store py-[10VW] bg-[#f7f6f2]">
+      <section className="store py-[10VW] bg-[#f7f6f2]" ref={StoreSectionRef}>
         <div className="store-heading flex flex-col justify-start items-center mt-24 px-16 ">
           <div className="store-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-bold text-[#342F2D]">Store</h2>
