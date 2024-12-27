@@ -19,7 +19,6 @@ export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const FantasySectionRef = useRef([])
   const ProjectsSectionRef = useRef([])
-  const textOpacityRef = useRef([])
 
   // puzzle
   // bg-[#f7f6f2]
@@ -127,10 +126,10 @@ export default function Hero() {
 
     words.forEach((word) => {
       const { x: randomX, y: randomY } = generatePosition()
-      const randomScale = Math.random() * 1.5 + 0.5 // 0.5~2 사이의 크기
-      const randomRotateX = Math.random() * 180 // X축 회전 (범위 축소)
-      const randomRotateY = Math.random() * 180 // Y축 회전 (범위 축소)
-      const randomTranslateZ = Math.random() * 100 - 50 // Z축 이동 (-50~50 사이)
+      const randomScale = Math.random() * 1.5 + 0.5
+      const randomRotateX = Math.random() * 180
+      const randomRotateY = Math.random() * 180
+      const randomTranslateZ = Math.random() * 100 - 50
 
       gsap.fromTo(
         word,
@@ -141,23 +140,23 @@ export default function Hero() {
           scale: randomScale,
           rotateX: randomRotateX,
           rotateY: randomRotateY,
-          z: randomTranslateZ, // 3D 이동 추가
+          z: randomTranslateZ,
         },
         {
           opacity: 1,
           x: 0,
-          y: 0, // 원래 위치로 이동
+          y: 0,
           scale: 1,
-          rotateX: 0, // 정면으로 회전
+          rotateX: 0,
           rotateY: 0,
-          z: 0, // 원래 깊이로 이동
-          duration: 3, // 애니메이션 지속 시간
-          ease: 'power4.out', // 부드러운 애니메이션
+          z: 0,
+          duration: 3,
+          ease: 'power4.out',
           scrollTrigger: {
-            trigger: '.textOpacity_tit', // 애니메이션을 트리거할 요소
-            start: 'top bottom', // 화면 상단이 요소 중심에 도달하면 시작
-            end: 'bottom top', // 화면 하단이 요소 중심에 도달하면 끝
-            scrub: true, // 스크롤과 동기화
+            trigger: '.textOpacity_tit',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
           },
         }
       )
