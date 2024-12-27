@@ -126,10 +126,17 @@ export default function Hero() {
 
     words.forEach((word) => {
       const { x: randomX, y: randomY } = generatePosition()
+<<<<<<< HEAD
       const randomScale = Math.random() * 1.5 + 0.5
       const randomRotateX = Math.random() * 180
       const randomRotateY = Math.random() * 180
       const randomTranslateZ = Math.random() * 100 - 50
+=======
+      const randomScale = Math.random() * 3.5 + 0.5 // 0.5~2 사이의 크기
+      const randomRotateX = Math.random() * 180 // X축 회전 (범위 축소)
+      const randomRotateY = Math.random() * 180 // Y축 회전 (범위 축소)
+      const randomTranslateZ = Math.random() * 100 - 50 // Z축 이동 (-50~50 사이)
+>>>>>>> f067696d0d6b5a4174e3146c529208beecc5ab86
 
       gsap.fromTo(
         word,
@@ -165,8 +172,8 @@ export default function Hero() {
 
   return (
     <div id="wrap">
-      <section className="h-[100vh] ">
-        <div className="intro-text flex justify-between items-center mt-24 pt-4 px-16">
+      <section className="h-screen pb-[10VW] ">
+        <div className="intro-text fy-[10vw] flex justify-between items-center gap-8 mt-24 pt-4 px-16">
           <div className="intro-heading text-6xl leading-normal ">
             <h2>Art &</h2>
             <h2 className="font-extrabold text-[#bd1a1a]">Fashion</h2>
@@ -204,7 +211,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="FantasySection my-32" ref={FantasySectionRef}>
+      <section className="FantasySection h-screen py-[10VW] bg-[#f9f9f9]" ref={FantasySectionRef}>
         <div className="Fantasy-heading flex justify-start items-center px-16 ">
           <div className="Fantasy-heading text-6xl leading-normal flex flex-row">
             <h2>
@@ -238,7 +245,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="ProjectsSection my-32" ref={ProjectsSectionRef}>
+      <section className="ProjectsSection py-[10VW] bg-[#f9f9f9]" ref={ProjectsSectionRef}>
         <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Projects-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-normal">
@@ -257,8 +264,8 @@ export default function Hero() {
 
           <div className="Projects-text absolute top-1/3 left-1/3">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-xl">2024 COLLABORATION</strong>
-              <span className=" font-bold text-3xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
+              <strong className=" font-normal text-2xl text-zinc-700">2024 COLLABORATION</strong>
+              <span className=" font-bold text-4xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
               <p className="Projects-desc text-md font-light break-words pt-3">
                 'Nudake♡Jennie' is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie's first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
               </p>
@@ -276,8 +283,8 @@ export default function Hero() {
           </div>
           <div className="Projects-text absolute top-1/3 left-16 ">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-xl">2022 COLLABORATION</strong>
-              <span className=" font-bold text-3xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
+              <strong className=" font-normal text-2xl text-zinc-700">2022 COLLABORATION</strong>
+              <span className=" font-bold text-4xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
                 ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single 'OMG'. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its charming yet
                 imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
@@ -296,8 +303,8 @@ export default function Hero() {
           </div>
           <div className="Projects-text absolute top-1/3 right-16">
             <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-xl">2023 STORE OPEN</strong>
-              <span className=" font-bold text-3xl text-[#7B3010] pt-4">SINSA</span>
+              <strong className=" font-normal text-2xl text-zinc-700">2023 STORE OPEN</strong>
+              <span className=" font-bold text-4xl text-[#7B3010] pt-4">SINSA</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
                 NUDAKE’s third flagship store, ‘The Croissant’, opened in Sinsa on September 8, 2023, featuring a variety of menus that give a fresh take on croissants. Inspired by the convenient size and diverse flavors of rice balls, the signature menu, ‘Oniwassant’, offers a customizable
                 experience akin to its rice-based counterpart. With options for flavor and shape tailored to individual preferences, the seaweed wrapping not only adds visual appeal but also enhances the culinary delight with its savory essence.
@@ -311,7 +318,7 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[200vh] my-32 bg-[#f7f6f2] flex justify-center relative">
+      <section className="textOpacity h-[200vh] py-[10VW] bg-[#f9f9f9] flex justify-center relative">
         <div className="sticky top-1/2 transform translate-y-1/2 w-full">
           <div className="textOpacity_tit mx-auto w-3/5 text-center space-x-2 text-5xl leading-normal">
             <span className="word inline-block">At</span>
@@ -340,7 +347,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="store my-32">
+      <section className="store py-[10VW] bg-[#f7f6f2]">
         <div className="store-heading flex flex-col justify-start items-center mt-24 px-16 ">
           <div className="store-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-bold text-[#342F2D]">Store</h2>
@@ -428,7 +435,7 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity my-32 ">
+      <section className="textOpacity py-[10VW] bg-[#f9f9f9]">
         <div className="flex items-center justify-center h-screen">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
             <h2>Our desserts are more than treats</h2>
