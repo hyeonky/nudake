@@ -168,28 +168,13 @@ export default function Hero() {
 
   // store
   useEffect(() => {
-    const sections = StoreSectionRef.current.querySelectorAll('.slide-list')
-
-    sections.forEach((section, index) => {
-      const image = section.querySelector('.image-container')
-      const text = section.querySelector('.store-text')
-
-      // Timeline for individual sections
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            scrub: 1,
-            markers: false,
-          },
-        })
-        .fromTo(image, { opacity: 0, y: 100, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power4.out' })
-        .fromTo(text, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 1, ease: 'power4.out' }, '<')
+    gsap.fromTo(StoreSectionRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: 'power2.out',
     })
   }, [])
-
   return (
     <div id="wrap">
       <section className="h-screen pb-[10VW] bg-[#f9f9f9]">
@@ -367,7 +352,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="store py-[10VW] bg-[#f7f6f2]" ref={StoreSectionRef}>
+      <section className="store py-[10VW] bg-[#f7f6f2]">
         <div className="store-heading flex flex-col justify-start items-center mt-24 px-16 ">
           <div className="store-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-bold text-[#342F2D]">Store</h2>
@@ -380,7 +365,7 @@ export default function Hero() {
         <div className="store-cont flex justify-center items-center rounded-xl mt-24 ">
           <Link href="#">
             {/* slide-list1 */}
-            <div className="slide-list relative">
+            <div className="slide-list relative" ref={StoreSectionRef.current[0]}>
               <div className="store-text absolute top-1/3 left-52 text-[#F2F2EF] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold"> DOSAN</h2>
@@ -397,7 +382,7 @@ export default function Hero() {
             </div>
 
             {/* slide-list2 */}
-            <div className="slide-list relative">
+            <div className="slide-list relative z-10" ref={StoreSectionRef.current[1]}>
               <div className="store-text text-5xl font-bold absolute top-1/3 left-52 text-[#b82822] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold">SEONGSU</h2>
@@ -416,7 +401,7 @@ export default function Hero() {
             </div>
 
             {/* slide-list3 */}
-            <div className="slide-list relative">
+            <div className="slide-list relative z-20" ref={StoreSectionRef.current[2]}>
               <div className="store-text absolute top-1/3 left-52 text-[#7B3010] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold">SINSA</h2>
@@ -435,7 +420,7 @@ export default function Hero() {
             </div>
 
             {/* slide-list4 */}
-            <div className="slide-list relative">
+            <div className="slide-list relative z-30" ref={StoreSectionRef.current[3]}>
               <div className="store-text absolute top-1/3 left-52 glow-neon z-10">
                 <p className="text-2xl font-normal">CHINA</p>
                 <h2 className="pt-1 text-5xl font-bold">SHANGHAI</h2>
