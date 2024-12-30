@@ -7,6 +7,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Flipcard from '@/components/flipcard/Flipcard'
 import Image from 'next/image'
+import { transform } from 'motion'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -21,7 +22,57 @@ export default function Hero() {
   const ProjectsSectionRef = useRef([])
   const StoreSectionRef = useRef([])
 
+  // section
+  // const ScrollAnimation = () => {
+  //   const sectionRef = useRef([])
+  //   sectionRef.current = []
+
+  //   const addToRefs = (el) => {
+  //     if (el && !sectionRef.current.includes(el)) {
+  //       sectionRef.current.push(el)
+  //     }
+  //   }
+
+  //   useEffect(() => {
+  //     // 각 섹션에 대해 ScrollTrigger 설정
+  //     sectionRef.current.forEach((section, index) => {
+  //       gsap.fromTo(
+  //         section,
+  //         {
+  //           opacity: 0,
+  //           y: 50,
+  //         },
+  //         {
+  //           opacity: 1,
+  //           y: 0,
+  //           duration: 1.5,
+  //           ease: 'power4.out',
+  //           scrollTrigger: {
+  //             trigger: section, // 이 섹션을 트리거로 설정
+  //             start: 'top bottom', // 섹션이 화면에 들어오면 애니메이션 시작
+  //             end: 'bottom top', // 섹션이 화면에서 나가면 애니메이션 종료
+  //             scrub: 1, // 스크롤에 맞게 애니메이션을 동기화
+  //             markers: false, // 마커를 표시하지 않으려면 false로 설정
+  //           },
+  //         }
+  //       )
+  //     })
+  //   }, [])
+  // }
+
   // puzzle
+  // const puzzleVariants = {
+  //   hidden: { opacity: 0, y: 50 }, // 시작 상태
+  //   visible: (index) => ({
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       delay: index * 0.2, // 각 퍼즐 조각마다 지연 시간 설정
+  //       duration: 0.8, // 애니메이션 지속 시간
+  //       ease: 'easeOut', // 애니메이션 easing
+  //     },
+  //   }),
+  // }
   // bg-[#f7f6f2]
   gsap.registerPlugin(ScrollTrigger)
 
@@ -100,6 +151,7 @@ export default function Hero() {
   // textOpacity
   useEffect(() => {
     const words = document.querySelectorAll('.word')
+    const slides = document.querySelectorAll('.textOpacity')
 
     // 단어 간 최소 거리 설정 (픽셀 단위, 더 가까운 간격으로 설정)
     const minDistance = 50
@@ -125,9 +177,10 @@ export default function Hero() {
       return { x, y }
     }
 
+    // 단어 애니메이션 적용
     words.forEach((word) => {
       const { x: randomX, y: randomY } = generatePosition()
-      const randomScale = Math.random() * 4.5 + 1.5 // 0.5~2 사이의 크기
+      const randomScale = Math.random() * 4.5 + 1.5 // 1.5~6 사이의 크기
       const randomRotateX = Math.random() * 90 // X축 회전 (범위 축소)
       const randomRotateY = Math.random() * 90 // Y축 회전 (범위 축소)
       const randomTranslateZ = Math.random() * 100 - 50 // Z축 이동 (-50~50 사이)
@@ -142,7 +195,6 @@ export default function Hero() {
           rotateX: randomRotateX,
           rotateY: randomRotateY,
           z: randomTranslateZ,
-          pin: true,
         },
         {
           opacity: 1,
@@ -152,32 +204,102 @@ export default function Hero() {
           rotateX: 0,
           rotateY: 0,
           z: 0,
-          duration: 3,
+          // duration: 10,
           ease: 'power4.out',
           scrollTrigger: {
             trigger: '.textOpacity_tit',
-            start: 'top 80%',
-            end: 'bottom 20%',
+            start: 'top center',
+            end: '+=800',
             scrub: true,
+            // markers: true,
           },
-          pin: true,
         }
       )
+    })
+
+    // 슬라이드 애니메이션 적용 및 pin 효과
+    slides.forEach((slide) => {
+      gsap.to(slide, {
+        duration: 3,
+        scrollTrigger: {
+          trigger: slide,
+          start: 'top top', // 슬라이드의 시작 부분
+          end: '+=400', // 슬라이드의 끝 부분
+          scrub: true,
+          pin: true, // 슬라이드를 고정
+          pinSpacing: true, // 슬라이드 고정 시 공간이 남지 않도록 설정
+        },
+      })
+    })
+
+    // 글씨가 스크롤에 따라 움직이도록 설정
+    words.forEach((word) => {
+      gsap.to(word, {
+        // 스크롤에 따라 이동할 양 설정 (y축 이동)
+        scrollTrigger: {
+          trigger: word,
+          start: 'top center',
+          end: 'bottom center',
+          scrub: true, // 스크롤과 애니메이션 동기화
+        },
+      })
     })
   }, [])
 
   // store
   useEffect(() => {
-    gsap.fromTo(StoreSectionRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power2.out',
+    const slides = StoreSectionRef.current.querySelectorAll('.slide-list')
+    const containers = StoreSectionRef.current.querySelectorAll('.image-container')
+    const texts = StoreSectionRef.current.querySelectorAll('.store-text')
+
+    slides.forEach((slide, index) => {
+      const container = containers[index]
+      const text = texts[index]
+
+      gsap.to(slide, {
+        y: '-10%', // 슬라이드 이동 효과
+        ease: 'none',
+        scrollTrigger: {
+          trigger: slide,
+          start: 'top top',
+          end: 'bottom 30%',
+          scrub: true,
+          pin: true,
+          pinSpacing: false,
+        },
+      })
+
+      if (container) {
+        gsap.to(container, {
+          opacity: 1, // 컨테이너의 추가 애니메이션 (필요 시 수정 가능)
+          ease: 'none',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: 'bottom 30%',
+            scrub: true,
+          },
+        })
+      }
+
+      if (text) {
+        gsap.to(text, {
+          y: '0%', // 텍스트 추가 애니메이션
+          ease: 'none',
+          scrollTrigger: {
+            trigger: text,
+            start: 'top bottom',
+            end: 'bottom 30%',
+            scrub: true,
+          },
+        })
+      }
     })
   }, [])
+
   return (
     <div id="wrap">
-      <section className="h-screen pb-[10VW] bg-[#f9f9f9]">
+      <section className="section h-screen pb-[10VW] bg-[#f9f9f9]">
         <div className="intro-text fy-[10vw] flex justify-between items-center gap-8 mt-24 pt-4 px-16">
           <div className="intro-heading text-6xl leading-normal ">
             <h2>Art &</h2>
@@ -189,7 +311,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16">
+        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16 object-cover">
           <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
             <Image src="/images/pattern/main/rouge-heel_logo_1.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 1" />
           </div>
@@ -216,7 +338,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="FantasySection h-screen py-[10VW] bg-[#f9f9f9]" ref={FantasySectionRef}>
+      <section className="section FantasySection h-screen py-[10VW] bg-[#f9f9f9]" ref={FantasySectionRef}>
         <div className="Fantasy-heading flex justify-start items-center px-16 ">
           <div className="Fantasy-heading text-6xl leading-normal flex flex-row">
             <h2>
@@ -244,13 +366,13 @@ export default function Hero() {
             </div>
             <div className="btn-coll flex justify-start w-[50vh] mt-2">
               <Link href="#" className="hover:no-underline">
-                <button className="flex justify-center items-center w-[90px] h-[36px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[5rem] shadow-md transition">view all</button>
+                <button className="flex justify-center items-center w-[110px] h-[40px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[5rem] shadow-md transition">view all</button>
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <section className="ProjectsSection py-[10VW] bg-[#f9f9f9]" ref={ProjectsSectionRef}>
+      <section className="section ProjectsSection py-[10VW] bg-[#f9f9f9]" ref={ProjectsSectionRef}>
         <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
           <div className="Projects-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-normal">
@@ -272,7 +394,7 @@ export default function Hero() {
               <strong className=" font-normal text-2xl text-zinc-700">2024 COLLABORATION</strong>
               <span className=" font-bold text-4xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
               <p className="Projects-desc text-md font-light break-words pt-3">
-                'Nudake♡Jennie' is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie's first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
+                &#39;Nudake♡Jennie &#39; is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie &#39;s first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
               </p>
             </div>
           </div>
@@ -291,8 +413,8 @@ export default function Hero() {
               <strong className=" font-normal text-2xl text-zinc-700">2022 COLLABORATION</strong>
               <span className=" font-bold text-4xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
               <p className="Projects-desc text-md font-light break-words  pt-3">
-                ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single 'OMG'. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its charming yet
-                imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
+                ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single &#39;OMG &#39;. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its charming
+                yet imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
               </p>
             </div>
           </div>
@@ -323,8 +445,8 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="textOpacity h-[200vh] py-[10VW] bg-[#f9f9f9] flex justify-center items-center relative ov">
-        <div className="sticky top-0 w-full">
+      <section className="section textOpacity h-[100vh] py-[10VW] bg-[#f9f9f9] flex relative">
+        <div className="sticky top-0 left-0 w-full flex justify-center items-center ">
           <div className="textOpacity_tit mx-auto w-3/5 text-center space-x-2 text-5xl leading-normal">
             <span className="word inline-block">At</span>
             <span className="word inline-block">NUDAKE,</span>
@@ -352,7 +474,7 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <section className="store py-[10VW] bg-[#f7f6f2]">
+      <section className="section store flex flex-col py-[10VW] h-[550vh] overflow-hidden bg-[#f7f6f2]" ref={StoreSectionRef}>
         <div className="store-heading flex flex-col justify-start items-center mt-24 px-16 ">
           <div className="store-heading text-7xl leading-normal flex flex-row">
             <h2 className="font-bold text-[#342F2D]">Store</h2>
@@ -362,85 +484,91 @@ export default function Hero() {
             <br />A place filled with new charm.
           </p>
         </div>
-        <div className="store-cont flex justify-center items-center rounded-xl mt-24 ">
+        <div className="store-cont flex flex-col rounded-xl mt-24 relative">
+          {/* slide-list1 */}
           <Link href="#">
-            {/* slide-list1 */}
-            <div className="slide-list relative" ref={StoreSectionRef.current[0]}>
+            <div className="slide-list sticky h-screen z-0">
               <div className="store-text absolute top-1/3 left-52 text-[#F2F2EF] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold"> DOSAN</h2>
               </div>
-              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+              <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
                 <Image src="/images/pattern/main/nudake_dosan_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
-              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden sticky">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                  <Image src="/images/pattern/main/nudake_dosan_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
+                  <Image src="/images/pattern/main/nudake_dosan_pc_1.png" width={1200} height={1200} alt="코타" className="h-[100vh] w-full object-cover" />
                 </div>
               </div>
             </div>
+          </Link>
 
-            {/* slide-list2 */}
-            <div className="slide-list relative z-10" ref={StoreSectionRef.current[1]}>
+          {/* slide-list2 */}
+          <Link href="#">
+            <div className="slide-list sticky h-screen z-10">
               <div className="store-text text-5xl font-bold absolute top-1/3 left-52 text-[#b82822] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold">SEONGSU</h2>
               </div>
 
-              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+              <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
                 <Image src="/images/pattern/main/nudake_seongsu_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
-              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden sticky">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                  <Image src="/images/pattern/main/nudake_seongsu_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
+                  <Image src="/images/pattern/main/nudake_seongsu_pc_1.png" width={1200} height={1200} alt="코타" className="h-[100vh] w-full object-cover" />
                 </div>
               </div>
             </div>
+          </Link>
 
-            {/* slide-list3 */}
-            <div className="slide-list relative z-20" ref={StoreSectionRef.current[2]}>
+          {/* slide-list3 */}
+          <Link href="#">
+            <div className="slide-list sticky h-screen z-20">
               <div className="store-text absolute top-1/3 left-52 text-[#7B3010] z-10">
                 <p className="text-2xl font-normal">KOREA</p>
                 <h2 className="pt-1 text-5xl font-bold">SINSA</h2>
               </div>
 
-              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+              <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
                 <Image src="/images/pattern/main/nudake_sinsa_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
-              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden sticky">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                  <Image src="/images/pattern/main/nudake_sinsa_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
+                  <Image src="/images/pattern/main/nudake_sinsa_pc_1.png" width={1200} height={1200} alt="코타" className="h-[100vh] w-full object-cover" />
                 </div>
               </div>
             </div>
+          </Link>
 
-            {/* slide-list4 */}
-            <div className="slide-list relative z-30" ref={StoreSectionRef.current[3]}>
+          {/* slide-list4 */}
+          <Link href="#">
+            <div className="slide-list sticky h-screen z-30">
               <div className="store-text absolute top-1/3 left-52 glow-neon z-10">
                 <p className="text-2xl font-normal">CHINA</p>
                 <h2 className="pt-1 text-5xl font-bold">SHANGHAI</h2>
               </div>
 
-              <div className="image-container rounded-xl shadow-md mb-6 absolute top-1/3 right-32 z-10">
+              <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
                 <Image src="/images/pattern/main/nudake_shanghai_pc_1.png" width={500} height={500} alt="코타" className="w-full h-[30vh] rounded-xl" />
               </div>
 
-              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden relative">
+              <div className="store-bg w-full h-auto px-16 object-cover rounded-xl overflow-hidden sticky ">
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                  <Image src="/images/pattern/main/nudake_shanghai_pc_1.png" width={1200} height={1200} alt="코타" className="h-[90vh] w-full object-cover" />
+                  <Image src="/images/pattern/main/nudake_shanghai_pc_1.png" width={1200} height={1200} alt="코타" className="h-[100vh] w-full object-cover" />
                 </div>
               </div>
             </div>
           </Link>
         </div>
       </section>
-      <section className="textOpacity py-[10VW] bg-[#f9f9f9]">
+      <section className="section text py-[10VW] bg-[#f9f9f9]">
         <div className="flex items-center justify-center h-screen">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
             <h2>Our desserts are more than treats</h2>

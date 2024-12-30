@@ -11,9 +11,9 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
         </div>
 
         {/* Back side */}
-        <div className="absolute w-[50vh] h-[476.5px] backface-hidden rotate-y-180 object-cover rounded-xl ">
+        <div className="absolute w-[348px]] h-[476.5px] backface-hidden rotate-y-180 object-cover rounded-xl ">
           <div className="mt-20 w-full h-full object-cover rounded-xl">
-            <iframe className="w-[50vh] h-full object-cover rounded-xl" src={videoSrc} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="jennie_main_pc"></iframe>
+            <iframe className="w-[348px] h-full object-cover rounded-xl" src={videoSrc} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="jennie_main_pc"></iframe>
           </div>
         </div>
       </div>
