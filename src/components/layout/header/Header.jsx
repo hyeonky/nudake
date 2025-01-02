@@ -25,27 +25,27 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
         return (
           <header className="fixed top-0 left-0 right-0 z-50 bg-white-700 backdrop-blur-md flex items-center h-20">
             <Container size="full" className="flex justify-between items-center">
-              <div aria-label="Global" className="flex items-center justify-between lg:px-8 w-full">
+              <div aria-label="Global" className="flex pt-3 items-center justify-between lg:px-8 w-full">
                 <h1 className="flex lg:flex-1">
                   <a href="#" className="-m-1.5 p-1.5">
                     <span className="sr-only">Your Company</span>
-                    <Image alt="" src="/images/pattern/common/logo_r.svg" width={32} height={32} className="h-[60px] w-[60px]" />
+                    <Image alt="logo" src="/images/pattern/common/logo_r.svg" width={32} height={32} className="h-[60px] w-[60px]" />
                   </a>
                 </h1>
-                <div className="flex lg:hidden">
-                  <button type="button" onClick={() => setMobileMenuOpen(true)} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                <div className="flex lg:hidden ">
+                  <button type="button" onClick={() => setMobileMenuOpen(true)} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 ">
                     <span className="sr-only">Open main menu</span>
                     <Bars3Icon aria-hidden="true" className="size-6" />
                   </button>
                 </div>
-                <nav className="hidden lg:flex lg:gap-x-12">
+                <nav className="hidden lg:flex lg:gap-x-16 ">
                   {navigation.map((item) => (
-                    <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-900">
+                    <a key={item.name} href={item.href} className="text-md font-semibold text-gray-900 hover:no-underline hover:text-[#bd1a1a]">
                       {item.name}
                     </a>
                   ))}
                 </nav>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end ">
                   <a href="#" className="text-sm/6 font-semibold text-gray-900">
                     Log in <span aria-hidden="true">&rarr;</span>
                   </a>
@@ -56,7 +56,7 @@ const Header = ({ type = 'type1', title, sharing, prev }) => {
                 <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                   <div className="flex items-center justify-between">
                     <a href="#" className="-m-1.5 p-1.5">
-                      <span className="sr-only">Your Company</span>
+                      <span className="sr-only">NUDAKE</span>
                       <Image alt="" src="/images/pattern/common/logo.svg" width={32} height={32} className="h-8 w-auto" />
                     </a>
                     <button type="button" onClick={() => setMobileMenuOpen(false)} className="-m-2.5 rounded-md p-2.5 text-gray-700">

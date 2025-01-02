@@ -18,6 +18,7 @@ const navigation = [
 
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const puzzlePiecesRef = useRef([])
   const FantasySectionRef = useRef([])
   const ProjectsSectionRef = useRef([])
   const StoreSectionRef = useRef([])
@@ -61,18 +62,11 @@ export default function Hero() {
   // }
 
   // puzzle
-  // const puzzleVariants = {
-  //   hidden: { opacity: 0, y: 50 }, // 시작 상태
-  //   visible: (index) => ({
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       delay: index * 0.2, // 각 퍼즐 조각마다 지연 시간 설정
-  //       duration: 0.8, // 애니메이션 지속 시간
-  //       ease: 'easeOut', // 애니메이션 easing
-  //     },
-  //   }),
-  // }
+  useEffect(() => {
+    // 이미지가 하나씩 순차적으로 나타나는 애니메이션
+    gsap.fromTo(puzzlePiecesRef.current, { opacity: 0, y: 20 }, { y: 0, opacity: 1, duration: 3, delay: '.puzzle-piece' * 0.5, ease: 'power2.out' })
+  }, [])
+
   // bg-[#f7f6f2]
   gsap.registerPlugin(ScrollTrigger)
 
@@ -154,7 +148,7 @@ export default function Hero() {
     const slides = document.querySelectorAll('.textOpacity')
 
     // 단어 간 최소 거리 설정 (픽셀 단위, 더 가까운 간격으로 설정)
-    const minDistance = 50
+    const minDistance = 60
 
     // 기존 좌표를 저장하는 배열
     const positions = []
@@ -165,8 +159,8 @@ export default function Hero() {
       let x, y
 
       while (!isValid) {
-        x = (Math.random() - 0.5) * 800
-        y = (Math.random() - 0.5) * 800
+        x = (Math.random() - 0.5) * 1500
+        y = (Math.random() - 0.5) * 1500
         isValid = positions.every(([px, py]) => {
           const distance = Math.sqrt((x - px) ** 2 + (y - py) ** 2)
           return distance > minDistance
@@ -300,8 +294,8 @@ export default function Hero() {
   return (
     <div id="wrap">
       <section className="section h-screen pb-[10VW] bg-[#f9f9f9]">
-        <div className="intro-text fy-[10vw] flex justify-between items-center gap-8 mt-24 pt-4 px-16">
-          <div className="intro-heading text-6xl leading-normal ">
+        <div className="intro-text flex justify-between items-center gap-8 mt-24 pt-10 px-16">
+          <div className="intro-heading text-5xl leading-normal ">
             <h2>Art &</h2>
             <h2 className="font-extrabold text-[#bd1a1a]">Fashion</h2>
           </div>
@@ -311,36 +305,36 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-1 box-border relative w-full h-[50vw] p-16 object-cover">
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/rouge-heel_logo_1.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 1" />
+        <div className="puzzle-container grid grid-cols-4 grid-rows-2 gap-3 box-border relative w-full h-[50vw] p-16 object-cover" ref={puzzlePiecesRef}>
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/rouge-heel_logo_1.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 1" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/33_1.5x.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 2" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/33_1.5x.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 2" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/cauli_cake_1_2x-100.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 3" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/cauli_cake_1_2x-100.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 3" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/코타.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 4" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/코타.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 4" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/cameo_logo_1.jpg" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 5" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/cameo_logo_1.jpg" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 5" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/15.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 6" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/15.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 6" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 7" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 7" />
           </div>
-          <div className="puzzle-piece w-full h-full relative ref={puzzlePiecesRef}">
-            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full" alt="Puzzle Piece 8" />
+          <div className="puzzle-piece w-full h-full relative">
+            <Image src="/images/pattern/main/6.png" width={500} height={500} className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300" alt="Puzzle Piece 8" />
           </div>
         </div>
       </section>
       <section className="section FantasySection h-screen py-[10VW] bg-[#f9f9f9]" ref={FantasySectionRef}>
         <div className="Fantasy-heading flex justify-start items-center px-16 ">
-          <div className="Fantasy-heading text-6xl leading-normal flex flex-row">
+          <div className="Fantasy-heading text-5xl leading-normal flex flex-row">
             <h2>
               <span className="font-extrabold text-[#2B3116]">Fantasy</span> x Nudake
             </h2>
@@ -373,76 +367,71 @@ export default function Hero() {
         </div>
       </section>
       <section className="section ProjectsSection py-[10VW] bg-[#f9f9f9]" ref={ProjectsSectionRef}>
-        <div className="Projects-heading flex justify-start items-center mt-24 px-16 ">
-          <div className="Projects-heading text-7xl leading-normal flex flex-row">
-            <h2 className="font-normal">
-              Projects <span className="text-[#bd1a1a]">x</span> Artists
-            </h2>
-          </div>
-        </div>
-
-        {/* card1 */}
-
-        <div className="cardList relative">
-          {/* <div className="Fantasy-img w-[50vh] mt-20 px-16">
-            <Img src="/images/pattern/main/jennie_popup_3_pc.png" alt="코타" className="h-[50vh] rounded-xl" />
-          </div> */}
-          <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
-
-          <div className="Projects-text absolute top-1/3 left-1/3">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-2xl text-zinc-700">2024 COLLABORATION</strong>
-              <span className=" font-bold text-4xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
-              <p className="Projects-desc text-md font-light break-words pt-3">
-                &#39;Nudake♡Jennie &#39; is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie &#39;s first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
-              </p>
+        <div className="pro-cont px-16">
+          <div className="Projects-heading flex justify-start items-center mt-24">
+            <div className="Projects-heading text-7xl leading-normal flex flex-row">
+              <h2 className="font-normal">
+                Projects <span className="text-[#bd1a1a]">x</span> Artists
+              </h2>
             </div>
           </div>
-        </div>
-
-        {/* card2 */}
-        <div className="cardList relative">
-          {/* <div className="Fantasy-img w-[50vh] mt-20 px-16 ml-auto">
-            <Img src="/images/pattern/main/nujeans_12.png" alt="코타" className="h-[50vh] rounded-xl" />
-          </div> */}
-          <div className="flex justify-end px-44">
-            <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1" />
-          </div>
-          <div className="Projects-text absolute top-1/3 left-16 ">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-2xl text-zinc-700">2022 COLLABORATION</strong>
-              <span className=" font-bold text-4xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
-              <p className="Projects-desc text-md font-light break-words  pt-3">
-                ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single &#39;OMG &#39;. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its charming
-                yet imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
-              </p>
+          <div className="card-cont flex flex-col">
+            {/* card1 */}
+            <div className="cardList relative my-20">
+              <Flipcard imageSrc="/images/pattern/main/jennie_popup_3_pc.png" videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1" />
+              <div className="Projects-text absolute top-1/3 left-1/3">
+                <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
+                  <strong className=" font-normal text-2xl text-zinc-700">2024 COLLABORATION</strong>
+                  <span className=" font-bold text-4xl text-[#bd1a1a] pt-4">NUDAKE ♡ JENNIE</span>
+                  <p className="Projects-desc text-md font-light break-words pt-3">
+                    &#39;Nudake♡Jennie &#39; is a special collaboration pop-up store presented by Nudake and Jennie. From four desserts celebrating Jennie &#39;s first solo album to a space that captures her various charms, visitors can experience new moments throughout the pop-up store.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* card3 */}
-        <div className="cardList relative">
-          {/* <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
+            {/* card2 */}
+            <div className="cardList relative my-20">
+              <div className="flex justify-end">
+                <Flipcard imageSrc="/images/pattern/main/nujeans_12.png" videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1" />
+              </div>
+              <div className="Projects-text absolute top-1/3 left-0 ">
+                <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
+                  <strong className=" font-normal text-2xl text-zinc-700">2022 COLLABORATION</strong>
+                  <span className=" font-bold text-4xl text-[#E80000] pt-4">OMG! NU+JEANS</span>
+                  <p className="Projects-desc text-md font-light break-words  pt-3">
+                    ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE and K-pop stars NewJeans, coinciding with their comeback single &#39;OMG &#39;. Dominating the space is an oversized rabbit sculpture, reaching the height of a two-story building, infusing the atmosphere with its
+                    charming yet imposing presence. The creative touches spread across the store effortlessly encapsulate the essence of winter delight, curated by NUDAKE and NewJeans.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* card3 */}
+            <div className="cardList relative my-20">
+              {/* <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
             <Img src="/images/pattern/main/sinsa_8_0.65x.png" alt="코타" className="h-[50vh] rounded-xl" />
           </div> */}
-          <div className="flex justify-center mr-44">
-            <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1" />
-          </div>
-          <div className="Projects-text absolute top-1/3 right-16">
-            <div className="textarea flex flex-col text-left w-[400px] mt-20 ">
-              <strong className=" font-normal text-2xl text-zinc-700">2023 STORE OPEN</strong>
-              <span className=" font-bold text-4xl text-[#7B3010] pt-4">SINSA</span>
-              <p className="Projects-desc text-md font-light break-words  pt-3">
-                NUDAKE’s third flagship store, ‘The Croissant’, opened in Sinsa on September 8, 2023, featuring a variety of menus that give a fresh take on croissants. Inspired by the convenient size and diverse flavors of rice balls, the signature menu, ‘Oniwassant’, offers a customizable
-                experience akin to its rice-based counterpart. With options for flavor and shape tailored to individual preferences, the seaweed wrapping not only adds visual appeal but also enhances the culinary delight with its savory essence.
-              </p>
+              <div className="flex justify-center">
+                <Flipcard imageSrc="/images/pattern/main/sinsa_8_0.65x.png" videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1" />
+              </div>
+              <div className="Projects-text absolute top-1/3 right-0">
+                <div className="textarea flex flex-col text-left w-[400px] mt-20">
+                  <strong className=" font-normal text-2xl text-zinc-700">2023 STORE OPEN</strong>
+                  <span className=" font-bold text-4xl text-[#7B3010] pt-4">SINSA</span>
+                  <p className="Projects-desc text-md font-light break-words pt-3">
+                    NUDAKE’s third flagship store, ‘The Croissant’, opened in Sinsa on September 8, 2023, featuring a variety of menus that give a fresh take on croissants. Inspired by the convenient size and diverse flavors of rice balls, the signature menu, ‘Oniwassant’, offers a customizable
+                    experience akin to its rice-based counterpart. With options for flavor and shape tailored to individual preferences, the seaweed wrapping not only adds visual appeal but also enhances the culinary delight with its savory essence.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="btn-coll flex justify-center items-center w-full mt-32">
-          <Link href="#" className="hover:no-underline">
-            <button className="flex justify-center items-center w-[120px] h-[36px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[5rem] shadow-md">All Project</button>
-          </Link>
+          <div className="btn-coll flex justify-center items-center w-full mt-32">
+            <Link href="#" className="hover:no-underline">
+              <button className="flex justify-center items-center w-[120px] h-[40px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[5rem] shadow-md">All Project</button>
+            </Link>
+          </div>
         </div>
       </section>
       <section className="section textOpacity h-[100vh] py-[10VW] bg-[#f9f9f9] flex relative">
@@ -568,7 +557,7 @@ export default function Hero() {
           </Link>
         </div>
       </section>
-      <section className="section text py-[10VW] bg-[#f9f9f9]">
+      <section className="section textIcon py-[10VW] bg-[#f9f9f9]">
         <div className="flex items-center justify-center h-screen">
           <div className="textOpacity_tit mx-auto pt-4 w-3/5  text-center space-x-2 text-5xl leading-normal text-[#342F2D]">
             <h2>Our desserts are more than treats</h2>
