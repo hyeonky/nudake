@@ -1,3 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=blur&text=NUDAKE&fontSize=70&fontColor=d6ace6)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
