@@ -1,5 +1,45 @@
 ![header](https://capsule-render.vercel.app/api?type=blur&color=bd1a1a&text=NUDAKE&fontSize=70&fontColor=ffffff&stroke=bd1a1a)
 
+# **NUDAKE 리뉴얼 프로젝트 (NUDAKE Redesign Project)**
+- 개인 프로젝트로 진행한 NUDAKE의 두 번째 리뉴얼 프로젝트입니다.
+
+<br><br> 
+
+## 미리보기 (Preview)
+![image]()
+
+<br><br> 
+
+## 🔗 링크 (Link)
+> 링크 주소
+
+<br><br> 
+
+## **프로젝트 개요 (Project Overview)**
+> **프로젝트(Project)** : 리뉴얼 프로젝트(Redesign Project)
+>
+> **기획 및 제작(Planning and Creation)** : 조현경(HYEONKYOUNG CHO)
+> 
+> **분류(Category)** : 개인 프로젝트(Personal Project)
+> 
+> **주요 기능(Main Features)** : open graph, GSAP
+>
+> **사용 기술(Technologies Used)** : Next, Html 5, Javascript, Gsap, Tailwind css etc.
+
+<br><br> 
+
+## 프로젝트의 정보 (Project Information)
+- 수정 중
+
+<br><br> 
+
+## 🚀 사용 기술 (Tech Stack) -- 수정 중
+<img src="https://img.shields.io/badge/html5-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" />  <img src="https://img.shields.io/badge/css3-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" />  <img src="https://img.shields.io/badge/javascript-%23F7DF1E.svg?&style=for-the-badge&logo=javascript&logoColor=black" />  <img src="https://img.shields.io/badge/sass-%23CC6699.svg?&style=for-the-badge&logo=sass&logoColor=white" />  <img src="https://img.shields.io/badge/swiper-6332F6?style=for-the-badge&logo=swiper&logoColor=white"/>  <img src="https://img.shields.io/badge/figma-000000?style=for-the-badge&logo=figma&logoColor=white"/>
+
+<br><br> 
+
+## 기능 구현 (Feature Implementation)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
