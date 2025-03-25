@@ -1,19 +1,19 @@
-import React from 'react'
-import IntroSwiper from './introSwiper'
-import News from './news'
-import { mockNews } from '@/data/newsData'
-import Link from 'next/link'
-import Image from 'next/image'
 import Hero from './hero'
-import Bento from './bento'
+import About from './about'
+import Project from './project'
+import SnapWords from './snapWords '
+import Store from './store'
+import Text from './text'
 
 const Home = () => {
   return (
     <>
       <Hero />
-      {/* <Bento /> */}
-      {/* <IntroSwiper /> */}
-      {/* <News mockNews={mockNews} title="뉴스" /> */}
+      <About />
+      <Project />
+      <SnapWords />
+      <Store />
+      <Text />
     </>
   )
 }

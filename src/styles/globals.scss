@@ -4,7 +4,6 @@
 
 @import 'reset';
 @import 'fonts';
-@import 'swiper';
 
 // css variables
 $white: #fff;
@@ -45,6 +44,7 @@ body {
 
 .glow-neon {
   color: #121212;
-  text-shadow: 0 0 5px #c6e1f2, 0 0 10px #c6e1f2, 0 0 20px #c6e1f2, 0 0 40px #c6e1f2;
+  text-shadow: 0 0 5px #c6e1f2, 0 0 10px #c6e1f2, 0 0 20px #c6e1f2,
+    0 0 40px #c6e1f2;
   font-weight: bold;
 }
