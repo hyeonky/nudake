@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -51,80 +52,96 @@ export default function Hero() {
         </div>
 
         <div
-          className="puzzle-container grid grid-cols-4 grid-rows-2 gap-3 box-border relative w-full h-[50vw] p-16 object-cover"
+          className="puzzle-container grid grid-cols-4 grid-rows-2 gap-3 box-border relative w-100px h-[50vw] p-16 object-contain"
           ref={puzzlePiecesRef}>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/rouge-heel_logo_1.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 1"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/33_1.5x.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 2"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/cauli_cake_1_2x-100.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 3"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/코타.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 4"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/cameo_logo_1.jpg"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 5"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/15.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 6"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/6.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 7"
-            />
-          </div>
-          <div className="puzzle-piece w-full h-full relative">
-            <Image
-              src="/images/pattern/main/6.png"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full hover:scale-105 hover:transition-all hover:duration-300"
-              alt="Puzzle Piece 8"
-            />
-          </div>
+          <Link href="#">
+            <div className="puzzle-piece w-100px h-full relative">
+              <Image
+                src="/images/pattern/main/desserts8.png"
+                width={500}
+                height={500}
+                className="object-cover w-100px h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 1"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts2.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 2"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts3.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 3"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts4.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 4"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts14.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 5"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts15.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 6"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts10.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 7"
+              />
+            </div>
+          </Link>
+          <Link href="#">
+            <div className="puzzle-piece w-full h-full relative">
+              <Image
+                src="/images/pattern/main/desserts17.png"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
+                alt="Puzzle Piece 8"
+              />
+            </div>
+          </Link>
         </div>
       </section>
     </div>
