@@ -1,6 +1,6 @@
-import "@/styles/globals.scss";
-import { Providers } from "@/components/providers";
-import SkipNav from "@/components/layout/header/SkipNav";
+import '@/styles/globals.scss'
+import { Providers } from '@/components/providers'
+import SkipNav from '@/components/layout/header/SkipNav'
 
 export const metadata = {
   title: 'next.js template',
@@ -29,7 +29,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
       </head>
       <body>
         <Providers>
@@ -40,5 +44,5 @@ export default function RootLayout({ children }) {
         </Providers>
       </body>
     </html>
-  );
+  )
 }

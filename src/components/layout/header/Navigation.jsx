@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { useState } from "react";
-import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from 'react'
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 const Navigation = ({ isOpen, onClose, menuItems }) => {
   return (
@@ -14,8 +14,7 @@ const Navigation = ({ isOpen, onClose, menuItems }) => {
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
             <DialogPanel
               transition
-              className="pointer-events-auto w-screen max-w-md transform transition duration-400 ease-in-out data-[closed]:translate-x-full"
-            >
+              className="pointer-events-auto w-screen max-w-md transform transition duration-400 ease-in-out data-[closed]:translate-x-full">
               <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                 <div className="px-4 sm:px-6">
                   <div className="flex items-start justify-between">
@@ -26,8 +25,7 @@ const Navigation = ({ isOpen, onClose, menuItems }) => {
                       <button
                         type="button"
                         onClick={onClose}
-                        className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      >
+                        className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                         <span className="absolute -inset-2.5" />
                         <span className="sr-only">Close panel</span>
                         <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -41,8 +39,7 @@ const Navigation = ({ isOpen, onClose, menuItems }) => {
                       <li key={item.id}>
                         <a
                           href={item.href}
-                          className="text-gray-700 hover:underline"
-                        >
+                          className="text-gray-700 hover:underline">
                           {item.name}
                         </a>
                       </li>
@@ -55,7 +52,7 @@ const Navigation = ({ isOpen, onClose, menuItems }) => {
         </div>
       </div>
     </Dialog>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation
