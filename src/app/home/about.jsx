@@ -111,7 +111,7 @@ export default function About() {
           </div>
           <div className="btn-coll flex justify-start w-[50vh] mt-2">
             <Link href="#" className="hover:no-underline">
-              <button className="flex justify-center items-center w-[110px] h-[40px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-200 rounded-[5rem] shadow-md transition">
+              <button className="flex justify-center items-center w-[110px] h-[40px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-zinc-300 rounded-[5rem] shadow-md transition">
                 view all
               </button>
             </Link>
