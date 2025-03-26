@@ -11,7 +11,7 @@
 <br><br> 
 
 ## 🔗 링크 (Link)
-> 링크 주소
+> nudake.vercel.app
 
 <br><br> 
 
@@ -22,9 +22,9 @@
 > 
 > **분류(Category)** : 개인 프로젝트(Personal Project)
 > 
-> **주요 기능(Main Features)** : open graph, GSAP
+> **주요 기능(Main Features)** : open graph, GSAP, Flipcard
 >
-> **사용 기술(Technologies Used)** : Next, Html 5, Javascript, Gsap, Tailwind css etc.
+> **사용 기술(Technologies Used)** : Next, Html 5, Scss, Javascript, Gsap, Tailwind css etc.
 
 <br><br> 
 
