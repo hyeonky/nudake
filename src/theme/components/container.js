@@ -22,7 +22,7 @@ export const Container = {
     },
     full: {
       maxW: 'none',
-    }
+    },
   },
   variants: {
     primary: {
@@ -37,9 +37,9 @@ export const Container = {
     responsive: {
       px: { base: '4', md: '8', lg: '12' },
       py: { base: '4', md: '6', lg: '8' },
-    }
+    },
   },
   defaultProps: {
     size: 'xl',
-  }
+  },
 }

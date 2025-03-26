@@ -4,10 +4,10 @@ import SkipNav from '@/components/layout/header/SkipNav'
 
 export const metadata = {
   title: 'next.js template',
-  description: '페이지 설명',
+  description: '리뉴얼 사이트',
   openGraph: {
-    title: '페이지 제목',
-    description: '페이지 설명',
+    title: 'NUDAKE • 조현경',
+    description: '리뉴얼 사이트',
     type: 'website',
     url: 'http://www.mysite.com/article/article1.html',
     images: [
@@ -18,10 +18,10 @@ export const metadata = {
   },
   twitter: {
     card: 'summary',
-    title: '페이지 제목',
-    description: '페이지 설명',
+    title: 'NUDAKE • 조현경',
+    description: '리뉴얼 사이트',
     images: ['http://www.mysite.com/article/article1.html'],
-    creator: '사이트 명',
+    creator: 'NUDAKE • 조현경',
   },
 }
 

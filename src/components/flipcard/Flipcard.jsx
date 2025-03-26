@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const Flipcard = ({ imageSrc, videoSrc }) => {
   return (
@@ -14,6 +15,13 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
             alt="코타"
             className=" h-[476.5px] rounded-xl"
           />
+          <motion.div
+            initial={{ y: 0 }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-[-40%] left-0 w-full h-full flex items-center justify-center text-white text-2xl font-bold opacity-90 group-hover:opacity-0 transition-opacity duration-300">
+            Hover to Reveal
+          </motion.div>
         </div>
 
         {/* Back side */}

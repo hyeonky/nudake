@@ -58,7 +58,7 @@ export default function Project() {
           {/* card1 */}
           <div className="cardList relative my-20">
             <Flipcard
-              imageSrc="/images/pattern/main/jennie_popup_3_pc.png"
+              imageSrc="/images/pattern/main/artists1.png"
               videoSrc="https://player.vimeo.com/video/1031021629?h=a67d274315&autoplay=1&loop=1&background=1&muted=1"
             />
             <div className="Projects-text absolute top-1/3 left-1/3">
@@ -84,7 +84,7 @@ export default function Project() {
           <div className="cardList relative my-20">
             <div className="flex justify-end">
               <Flipcard
-                imageSrc="/images/pattern/main/nujeans_12.png"
+                imageSrc="/images/pattern/main/artists2.png"
                 videoSrc="https://player.vimeo.com/video/929439503?&autoplay=1&loop=1&background=1&muted=1"
               />
             </div>
@@ -96,7 +96,7 @@ export default function Project() {
                 <span className=" font-bold text-4xl text-[#E80000] pt-4">
                   OMG! NU+JEANS
                 </span>
-                <p className="Projects-desc text-md font-light break-words  pt-3">
+                <p className="Projects-desc text-md font-light break-words pt-3">
                   ‘OMG! NU+JEANS’ is a joint pop-up store by cake brand NUDAKE
                   and K-pop stars NewJeans, coinciding with their comeback
                   single &#39;OMG &#39;. Dominating the space is an oversized
@@ -112,12 +112,9 @@ export default function Project() {
 
           {/* card3 */}
           <div className="cardList relative my-20">
-            {/* <div className="Fantasy-img w-[50vh] mt-20 pt-6 px-16 mx-auto">
-            <Img src="/images/pattern/main/sinsa_8_0.65x.png" alt="코타" className="h-[50vh] rounded-xl" />
-          </div> */}
             <div className="flex justify-center">
               <Flipcard
-                imageSrc="/images/pattern/main/sinsa_8_0.65x.png"
+                imageSrc="/images/pattern/main/artists3.png"
                 videoSrc="https://player.vimeo.com/video/929442157?&autoplay=1&loop=1&background=1&muted=1"
               />
             </div>
@@ -144,9 +141,10 @@ export default function Project() {
             </div>
           </div>
         </div>
-        <div className="btn-coll flex justify-center items-center w-full mt-32">
+
+        <div className="btn-coll flex justify-center items-center w-full mt-2">
           <Link href="#" className="hover:no-underline">
-            <button className="flex justify-center items-center w-[120px] h-[40px] p-4 text-md font-light bg-[#F5F6F5] hover:bg-zinc-200 rounded-[5rem] shadow-md">
+            <button className="flex justify-center items-center w-[110px] h-[40px] p-4 text-md font-light bg-[#f9f9f9] hover:bg-[#d7d7c7] rounded-[5rem] shadow-md transition relative z-20">
               All Project
             </button>
           </Link>
