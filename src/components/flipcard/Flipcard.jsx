@@ -12,7 +12,7 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
             src={imageSrc}
             width={500}
             height={500}
-            alt="코타"
+            alt="artists"
             className=" h-[476.5px] rounded-xl"
           />
           <motion.div

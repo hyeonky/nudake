@@ -68,7 +68,7 @@ export default function Hero() {
           <Link href="#">
             <div className="puzzle-piece w-full h-full relative">
               <Image
-                src="/images/pattern/main/desserts2.png"
+                src="/images/pattern/main/desserts2-2.png"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"
@@ -79,7 +79,7 @@ export default function Hero() {
           <Link href="#">
             <div className="puzzle-piece w-full h-full relative">
               <Image
-                src="/images/pattern/main/desserts3.png"
+                src="/images/pattern/main/desserts3-2.png"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full hover:scale-110 hover:transition-all hover:duration-300"

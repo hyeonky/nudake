@@ -87,7 +87,7 @@ export default function Store() {
                 src="/images/pattern/main/store1.png"
                 width={500}
                 height={500}
-                alt="코타"
+                alt="도산산"
                 className="w-full h-[30vh] rounded-xl"
               />
             </div>
@@ -98,7 +98,7 @@ export default function Store() {
                   src="/images/pattern/main/store1.png"
                   width={1200}
                   height={1200}
-                  alt="코타"
+                  alt="도산산"
                   className="h-[100vh] w-full object-cover"
                 />
               </div>
@@ -116,10 +116,10 @@ export default function Store() {
 
             <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
               <Image
-                src="/images/pattern/main/store2.png"
+                src="/images/pattern/main/store1-2.png"
                 width={500}
                 height={500}
-                alt="코타"
+                alt="성수"
                 className="w-full h-[30vh] rounded-xl"
               />
             </div>
@@ -128,10 +128,10 @@ export default function Store() {
               <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <Image
-                  src="/images/pattern/main/store2.png"
+                  src="/images/pattern/main/store1-2.png"
                   width={1200}
                   height={1200}
-                  alt="코타"
+                  alt="성수"
                   className="h-[100vh] w-full object-cover"
                 />
               </div>
@@ -149,10 +149,10 @@ export default function Store() {
 
             <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
               <Image
-                src="/images/pattern/main/store3.png"
+                src="/images/pattern/main/store1-3.png"
                 width={500}
                 height={500}
-                alt="코타"
+                alt="신사"
                 className="w-full h-[30vh] rounded-xl"
               />
             </div>
@@ -161,10 +161,10 @@ export default function Store() {
               <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <Image
-                  src="/images/pattern/main/store3.png"
+                  src="/images/pattern/main/store1-3.png"
                   width={1200}
                   height={1200}
-                  alt="코타"
+                  alt="신사"
                   className="h-[100vh] w-full object-cover"
                 />
               </div>
@@ -182,10 +182,10 @@ export default function Store() {
 
             <div className="image-container rounded-xl shadow-md mb-6 fixed top-1/3 right-32 z-10">
               <Image
-                src="/images/pattern/main/store4.png"
+                src="/images/pattern/main/store1-4.png"
                 width={500}
                 height={500}
-                alt="코타"
+                alt="상하이"
                 className="w-full h-[30vh] rounded-xl"
               />
             </div>
@@ -194,10 +194,10 @@ export default function Store() {
               <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <Image
-                  src="/images/pattern/main/store4.png"
+                  src="/images/pattern/main/store1-4.png"
                   width={1200}
                   height={1200}
-                  alt="코타"
+                  alt="상하이"
                   className="h-[100vh] w-full object-cover"
                 />
               </div>

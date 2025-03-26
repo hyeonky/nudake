@@ -95,7 +95,7 @@ export default function About() {
             src="/images/pattern/main/about.jpg"
             width={500}
             height={500}
-            alt="코타"
+            alt="about"
             className=" w-full h-[60vh] rounded-xl "
           />
           <div className="img-desc spilt text-lg font-semibold break-words w-full pt-2">
