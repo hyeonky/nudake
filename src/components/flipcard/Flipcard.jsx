@@ -29,7 +29,7 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
           <div className="w-[348px] h-[476.5px] object-contain rounded-xl">
             <iframe
               className="w-[348px] h-[476.5px] object-contain rounded-xl"
-              src={videoSrc}
+              src={`${videoSrc}?autoplay=1&muted=1&loop=1`}
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
               title="jennie_main_pc"></iframe>
           </div>
