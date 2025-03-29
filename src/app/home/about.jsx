@@ -6,8 +6,10 @@ import React, { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 export default function About() {
+  const [isHovered, setIsHovered] = useState(false)
   const FantasySectionRef = useRef([])
 
   gsap.registerPlugin(ScrollTrigger)
@@ -91,13 +93,34 @@ export default function About() {
           </div>
         </div>
         <div className="image flex flex-col justify-between items-start w-[50vh]">
-          <Image
-            src="/images/pattern/main/about.jpg"
-            width={500}
-            height={500}
-            alt="about"
-            className=" w-full h-[60vh] rounded-xl "
-          />
+          <div
+            className="relative w-[472.5px] h-[567px] rounded-xl overflow-hidden"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}>
+            <Image
+              src="/images/pattern/main/about.jpg"
+              width={500}
+              height={500}
+              alt="about"
+              className={`absolute w-full h-full object-cover transition-opacity duration-500 ${
+                isHovered ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-[42%] left-0 w-full h-full flex items-center justify-center text-white text-2xl font-bold opacity-90 group-hover:opacity-0 transition-opacity duration-300">
+              Hover to Reveal
+            </motion.div>
+
+            <iframe
+              src="https://player.vimeo.com/video/929421481?controls=0&title=0&autoplay=1&muted=1&loop=1&autopause=0"
+              className={`absolute w-[472.5px] h-[567px] transition-opacity duration-500 ${
+                isHovered ? 'opacity-100' : 'opacity-0'
+              }`}
+              allow="autoplay; fullscreen"></iframe>
+          </div>
           <div className="img-desc spilt text-lg font-semibold break-words w-full pt-2">
             <span className="inline-block">
               Our exclusive patissier and barista team are constantly

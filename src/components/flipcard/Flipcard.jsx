@@ -12,7 +12,7 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
             src={imageSrc}
             width={500}
             height={500}
-            alt="artists"
+            alt="art"
             className=" h-[476.5px] rounded-xl"
           />
           <motion.div
@@ -30,8 +30,7 @@ const Flipcard = ({ imageSrc, videoSrc }) => {
             <iframe
               className="w-[348px] h-[476.5px] object-contain rounded-xl"
               src={videoSrc}
-              allowFullScreen
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write fullscreen"
               title="jennie_main_pc"></iframe>
           </div>
         </div>
