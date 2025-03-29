@@ -12,7 +12,7 @@ export const metadata = {
     url: 'https://nudake.vercel.app/',
     images: [
       {
-        url: 'https://github.com/hyeonky/nudake/blob/main/public/images/pattern/main/nudake_thumbnail.png?raw=true',
+        url: 'https://nudake.vercel.app/images/pattern/main/nudake_thumbnail.png',
       },
     ],
   },
@@ -21,7 +21,7 @@ export const metadata = {
     title: 'NUDAKE • 조현경',
     description: '리뉴얼 사이트',
     images: [
-      'https://github.com/hyeonky/nudake/blob/main/public/images/pattern/main/nudake_thumbnail.png?raw=true',
+      'https://nudake.vercel.app/images/pattern/main/nudake_thumbnail.png',
     ],
     creator: 'NUDAKE • 조현경',
   },
