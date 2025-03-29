@@ -11,7 +11,7 @@
 <br><br> 
 
 ## 🔗 링크 (Link)
-> [nudake](https://nudake.vercel.app/https://example.com)
+> [nudake.vercel.app](https://nudake.vercel.app/https://example.com)
 
 <br><br> 
 
