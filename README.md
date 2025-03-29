@@ -6,12 +6,12 @@
 <br><br> 
 
 ## 미리보기 (Preview)
-![image]()
+![nudake_thumbnail](https://github.com/user-attachments/assets/450a9f88-e9f6-45b8-8f1f-ba6f3222321b)
 
 <br><br> 
 
 ## 🔗 링크 (Link)
-> nudake.vercel.app
+> [nudake.vercel.app](https://nudake.vercel.app)
 
 <br><br> 
 
